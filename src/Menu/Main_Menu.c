@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "tools/color.h"
-#include<stdlib.h>
+#include <stdlib.h>
+#include "Admin/Admin_Login.h"
 
 void Main_Menu()
 {
@@ -10,12 +11,17 @@ void Main_Menu()
     printf("=============+============+==============+========+\n");
 
     int num;
-    do
+    
+    printf("请输入您的操作：");
+    scanf("%d", &num);
+    
+    while(num < 1 || num > 4)
     {
-        printf("请输入您的操作： ");
+        printf("%s%s无效的操作符，请重新再试！%s\n", BOLD, FRONT_RED, RESET);
+        printf("请输入您的操作：");
         scanf("%d",&num);
     } 
-    while (num < 1 || num >4);
+
     if (num == 1)
     {
         // User_Login();
@@ -26,7 +32,7 @@ void Main_Menu()
     }
     else if (num == 3)
     {
-        // Admin_Login();
+        Admin_Login();
     }
     else if (num == 4)
     {
