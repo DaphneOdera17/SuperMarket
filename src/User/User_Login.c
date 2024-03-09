@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <termios.h>
+#include <string.h>
+#include "User/User.h"
+#include "tools/color.h"
 
 #define MAX_PASSWORD_LENGTH 20
 #define MAX_USERNAME_LENGTH 10
@@ -40,16 +43,31 @@ void User_Login()
     
     char username[MAX_PASSWORD_LENGTH];
     char password[MAX_PASSWORD_LENGTH];
-    char saved_password[MAX_PASSWORD_LENGTH];
+    char saved_password[MAX_PASSWORD_LENGTH] = "123456";
 
-    printf("请输入用户名：");
-    getchar();
 
-    getUserName(username);
+    //printf("请输入用户名：");
 
+    //getUserName(username);
+
+    //getchar();
     printf("请输入密码：");
+
     getPassword(password);
 
     puts("");
+
+    while(!(strcmp(password, saved_password) == 0))
+    {
+        printf("%s密码输入错误,请重新再试!%s\n", FRONT_RED, RESET);
+        printf("请输入密码：");
+
+        getPassword(password);
+        puts("");
+    }
+
+    puts("登陆成功！");
+    User_Menu();
+    
     
 }
