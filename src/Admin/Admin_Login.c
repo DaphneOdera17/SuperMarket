@@ -19,6 +19,7 @@ void Admin_Login()
     printf("请输入密码:  ");
     while(1)
     {
+        system("stty -icanon"); //设置一次性读完操作，即不用回车也能获取字符
         system("stty -echo");
         ch = getchar();
         system("stty -echo");
@@ -47,7 +48,7 @@ void Admin_Login()
     {
         if(sscanf(line , "%s %s" , save_name , save_password) == 2)
         {
-            if(strcmp(name,save_name) == 0)
+            if(strcmp(name, save_name) == 0)
             {
                 user_found = 1;
                 int k = strcmp(password, save_password);
@@ -66,6 +67,8 @@ void Admin_Login()
                 }
             }
         }
+
+         
         
     }
     

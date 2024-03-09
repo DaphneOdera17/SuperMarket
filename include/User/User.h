@@ -11,4 +11,12 @@ void User_Login();
 
 void User_Menu();
 
+void Buyer_Menu();
+
+void Seller_Menu();
+
+void choose(int op);
+
+void Info_Menu();
+
 #endif
