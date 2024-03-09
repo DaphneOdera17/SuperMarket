@@ -4,9 +4,7 @@
 #include <string.h>
 #include "User/User.h"
 #include "tools/color.h"
-
-#define MAX_PASSWORD_LENGTH 20
-#define MAX_USERNAME_LENGTH 10
+#include "config.h"
 
 // 从终端获取密码（隐藏输入）
 void getPassword(char* password) {
@@ -18,6 +16,8 @@ void getPassword(char* password) {
     newAttr.c_lflag &= ~(ICANON | ECHO);
     tcsetattr(fileno(stdin), TCSAFLUSH, &newAttr);
     
+    printf("请输入密码：");
+
     // 读取密码
     int i = 0;
     char c;
@@ -34,7 +34,14 @@ void getPassword(char* password) {
 
 void getUserName(char* username)
 {
-    
+    printf("请输入用户名：");
+
+    int i = 0;
+    char c;
+    while((c = getchar()) != '\n' && i < MAX_USERNAME_LENGTH - 1){
+        username[i ++] = c;
+    }
+    username[i] = '\0';
 }
 
 void User_Login()
@@ -48,10 +55,7 @@ void User_Login()
 
     //printf("请输入用户名：");
 
-    //getUserName(username);
-
-    //getchar();
-    printf("请输入密码：");
+    getUserName(username);
 
     getPassword(password);
 
