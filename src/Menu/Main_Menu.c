@@ -2,6 +2,7 @@
 #include "tools/color.h"
 #include <stdlib.h>
 #include "Admin/Admin_Login.h"
+#include "User/User_Login.h"
 
 void Main_Menu()
 {
@@ -24,7 +25,7 @@ void Main_Menu()
 
     if (num == 1)
     {
-        // User_Login();
+        User_Login();
     }
     else if (num == 2)
     {
