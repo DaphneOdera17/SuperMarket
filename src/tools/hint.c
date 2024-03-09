@@ -14,24 +14,17 @@ static const char* BANNER = "\
 \t               |_|                               \n\
 ";
 
-static const char* INVALID = "\
-\t  _____                           _   _       _   _\n\
-\t |_   _|                         | | (_)     | | | |\n\
-\t   | |    _ __   __   __   __ _  | |  _    __| | | |\n\
-\t   | |   | '_ \\  \\ \\ / /  / _` | | | | |  / _` | | |\n\
-\t  _| |_  | | | |  \\ V /  | (_| | | | | | | (_| | |_|\n\
-\t |_____| |_| |_|   \\_/    \\__,_| |_| |_|  \\__,_| (_)\n\
-";
+static const char* FAILURE = "\t\t*** 操作失败,请重新再试! ***";
 
-void welcomeMessage() {
+void welcomeMessage() 
+{
     printf("\n%s%sWelcome to%s\n", BOLD, FRONT_RED, RESET);
     printf("%s%s%s%s\n", FRONT_BLUE, BOLD, BANNER, RESET);
     printf("%sDesigner: Zhang Xinyi, Huang Xueqin.%s\n\n", FRONT_PURPLR, RESET);
 }
 
-void invalidMessage() { 
-    printf("\n%s%s%s\a\n\n", FRONT_RED, INVALID, RESET);
-    printf("\n%s%sThis Function is Waiting For you to Implement ...%s\n\n", \
-FRONT_RED, BOLD, RESET);
+void failureMessage()
+{
+    printf("%s%s%s\n", FRONT_RED, FAILURE, RESET);
 }
 
