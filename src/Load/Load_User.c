@@ -1,12 +1,10 @@
-#include <stdio.h>
+/*#include <stdio.h>
 #include <string.h>
 #include "tools/color.h"
 #include "User/User.h"
 #include "config.h"
 
 #define N 25
-
-static User users[MAX_USER_NUMBER];
 
 void Load_User()
 {
@@ -25,3 +23,5 @@ void Load_User()
         k ++;
     fclose(ptr);
 }
+
+*/
