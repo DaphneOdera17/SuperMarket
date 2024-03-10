@@ -3,6 +3,7 @@
 #include "Menu/Main_Menu.h"
 #include "tools/color.h"
 #include "tools/hint.h"
+#include "User/User.h"
 
 void Admin_Menu()
 {
@@ -11,7 +12,6 @@ void Admin_Menu()
     int op;
     
     printf("请输入您的操作：");
-    puts("");
     scanf("%d", &op);
     
     while(op < 1 || op > 7)
@@ -33,7 +33,7 @@ void Admin_Menu()
         //
         break;
     case 4:
-        //
+        Print_UserInfo();
         break;
     case 5:
         // 

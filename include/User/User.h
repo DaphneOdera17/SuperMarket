@@ -13,6 +13,8 @@ typedef struct{
     double res; // 用户余额
 }User;
 
+
+
 void User_Sign();
 
 void getPassword(char* password);
@@ -30,5 +32,9 @@ void Seller_Menu();
 void choose(int op);
 
 void Info_Menu();
+
+void Print_UserInfo();
+
+void Load_User();
 
 #endif

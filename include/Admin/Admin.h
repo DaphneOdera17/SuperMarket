@@ -5,4 +5,6 @@ void Admin_Menu();
  
 void Admin_Login();
 
+void getpassword(char* password);
+
 #endif

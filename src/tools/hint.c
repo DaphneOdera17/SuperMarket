@@ -83,6 +83,7 @@ static const char* Seller_MENU_TITLE = "\n\t\t+-+ Seller Menu +-+";
 static const char* Buyer_MENU_TITLE = "\n\t\t+-+ Buyer Menu +-+";
 static const char* Info_MENU_TITLE = "\n\t\t+-+ Info Menu +-+";
 static const char* Admin_MENU_TITLE = "\n\t\t+-+ Admin Menu +-+";
+static const char* OPENERRORMESSAGE = "\t\t*** 打开文件失败！ ***";
 
 void welcomeMessage() 
 {
@@ -99,7 +100,7 @@ void failureMessage()
 void exitMessage()
 {
     printf("%s%s%s%s\n", BOLD, FRONT_RED, EXIT, RESET);
-    printf("\n%s%s%s%s\n", FRONT_WHITE, BOLD, GOODBYE, RESET);
+    printf("\n%s%s%s%s\n", FRONT_RED, BOLD, GOODBYE, RESET);
     printf("%s%s%s\n", FRONT_YELLOW, NEXTTIME, RESET);
 }
 
@@ -152,4 +153,9 @@ void info_menuMessage()
 {
     printf("%s%s%s%s\n", REVERSE, BOLD, Info_MENU_TITLE, RESET);
     printf("\n%s%s%s", BOLD, INFO_MENU_BANNER, RESET);
+}
+
+void openErrorMessage()
+{
+    printf("%s%s%s%s\n", BOLD, FRONT_RED , OPENERRORMESSAGE , RESET);
 }

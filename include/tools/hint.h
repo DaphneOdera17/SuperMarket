@@ -25,4 +25,6 @@ void admin_menuMessage();
 
 void info_menuMessage();
 
+void openErrorMessage();
+
 #endif
