@@ -14,13 +14,19 @@ static const char* BANNER = "\
 \t               |_|                               \n\
 ";
 
+static const char* GOODBYE = "\t";
+
 static const char* FAILURE = "\t\t*** 操作失败,请重新再试! ***";
+static const char* EXIT = "\t\t*** 退出成功! ***";
+static const char* LOGINFAILURE = "\t\t*** 登陆失败，请重新再试！***";
+static const char* LOGINSUCCESS = "\t\t*** 登陆成功！***";
+static const char* DESIGNERS = "Designer: Zhang Xinyi, Huang Xueqin.";
 
 void welcomeMessage() 
 {
     printf("\n%s%sWelcome to%s\n", BOLD, FRONT_RED, RESET);
     printf("%s%s%s%s\n", FRONT_BLUE, BOLD, BANNER, RESET);
-    printf("%sDesigner: Zhang Xinyi, Huang Xueqin.%s\n\n", FRONT_PURPLR, RESET);
+    printf("%s%s%s\n\n", FRONT_PURPLR, DESIGNERS, RESET);
 }
 
 void failureMessage()
@@ -28,3 +34,17 @@ void failureMessage()
     printf("%s%s%s\n", FRONT_RED, FAILURE, RESET);
 }
 
+void exitMessage()
+{
+    printf("%s%s%s%s\n", BOLD, FRONT_RED, EXIT, RESET);
+}
+
+void loginfailureMessage()
+{
+    printf("%s%s%s%s\n", BOLD, FRONT_RED, LOGINFAILURE, RESET);
+}
+
+void loginsuccessMessage()
+{
+    printf("%s%s%s%s\n", BOLD, FRONT_BLUE, LOGINSUCCESS, RESET);
+}

@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "Admin/Admin.h"
 #include "User/User.h"
+#include "tools/hint.h"
 
 void Main_Menu()
 {
@@ -29,7 +30,7 @@ void Main_Menu()
     }
     else if (op == 2)
     {
-        // User_sign();
+        //User_Sign();
     }
     else if (op == 3)
     {
@@ -37,10 +38,7 @@ void Main_Menu()
     }
     else if (op == 4)
     {
-        printf("%sExit Successful!%s",FRONT_RED,RESET);
+        exitMessage();
         exit(0);
     }    
-    
-    
-    
 }  

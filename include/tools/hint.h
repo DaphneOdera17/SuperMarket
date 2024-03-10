@@ -9,4 +9,8 @@ void successMessage();
 
 void exitMessage();
 
+void loginfailureMessage();
+
+void loginsuccessMessage();
+
 #endif

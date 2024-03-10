@@ -11,12 +11,13 @@ TARGET = main # 最终生成目标
 RM = -rm -f # 删除方式
 
 # 项目构建方式
+# 将所有的目标文件链接形成最终的可执行文件
 $(TARGET): $(OBJS)
 	$(CC) -o $(TARGET) $(OBJS)
 
 %o : %c
-	$(CC) -c $(CFLAGS) $< -o $@
+	$(CC) -c $(CFLAGS) $< -o $@ # 编译所有的源文件
 
 clean:
 	$(RM) $(OBJS) $(TARGET)
-
+	
