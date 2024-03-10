@@ -9,4 +9,9 @@
 #define MAX_ADRESS_LENGTH 20
 #define MAX_ID_LENGTH 6
 
+#define DEL_NUM 0x7F // 删除键
+
+static const char* ADMIN_NAME = "Admin";
+static const char* ADMIN_PASSWORD = "123456";
+
 #endif

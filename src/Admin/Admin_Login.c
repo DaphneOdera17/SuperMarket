@@ -2,14 +2,15 @@
 #include <stdlib.h>
 #include <string.h>
 #include "Menu/Main_Menu.h"
+#include "Admin/Admin.h"
+#include "config.h"
+#include "tools/hint.h"
 
 void Admin_Login()
 {
     char ch;
     char name[20];
     char password[20];
-    char save_name[20];
-    char save_password[20];
 
     printf("请输入管理员姓名:  ");
     scanf("%s", name);
@@ -19,61 +20,33 @@ void Admin_Login()
     printf("请输入密码:  ");
     while(1)
     {
-        system("stty -icanon"); //设置一次性读完操作，即不用回车也能获取字符
+        system("stty -icanon"); // 设置一次性读完操作，即不用回车也能获取字符
         system("stty -echo");
         ch = getchar();
         system("stty -echo");
+        putchar('*');
         
         if(ch == '\n')
         {
             password[i] = '\0';
+            system("stty icanon echo"); // 恢复终端设置
             break;
         }
         else
-        {
+        {   
             password[i++] = ch;
         }
     }
+    printf("\n");
 
-    FILE *ptr;
-    ptr = fopen("Admin.txt", "r");
-    if(ptr == NULL)
+    if(!(strcmp(name, ADMIN_NAME) == 0 && strcmp(password, ADMIN_PASSWORD) == 0))
     {
-        printf("error");
+        loginfailureMessage();
     }
-
-    char line[256];
-    int user_found = 0;
-    while(fgets(line ,sizeof(line) , ptr) != NULL)
+    else
     {
-        if(sscanf(line , "%s %s" , save_name , save_password) == 2)
-        {
-            if(strcmp(name, save_name) == 0)
-            {
-                user_found = 1;
-                int k = strcmp(password, save_password);
-                if(k = 0)
-                {
-                    printf("登陆成功!");
-                    // Admin_Menu();
-                    fclose(ptr);
-                    
-                }
-                else
-                {
-                    printf("登陆失败，请重新再试！");
-                    Main_Menu();
-                    // 重新输入用户名功能？
-                }
-            }
-        }
-
-         
-        
+        loginsuccessMessage();
+        Admin_Menu();
     }
     
-    
-    
-    
-
 }
