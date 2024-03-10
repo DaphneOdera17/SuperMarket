@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "Menu/Main_Menu.h"
+#include "Admin/Admin.h"
 #include "config.h"
 #include "tools/hint.h"
 
@@ -19,7 +20,7 @@ void Admin_Login()
     printf("请输入密码:  ");
     while(1)
     {
-        system("stty -icanon"); //设置一次性读完操作，即不用回车也能获取字符
+        system("stty -icanon"); // 设置一次性读完操作，即不用回车也能获取字符
         system("stty -echo");
         ch = getchar();
         system("stty -echo");
@@ -28,24 +29,24 @@ void Admin_Login()
         if(ch == '\n')
         {
             password[i] = '\0';
+            system("stty icanon echo"); // 恢复终端设置
             break;
         }
         else
-        {
+        {   
             password[i++] = ch;
         }
     }
+    printf("\n");
 
-    if(strcmp(name, ADMIN_NAME) == 0 && strcmp(password, ADMIN_PASSWORD) == 0)
+    if(!(strcmp(name, ADMIN_NAME) == 0 && strcmp(password, ADMIN_PASSWORD) == 0))
     {
-        ADMIN
+        loginfailureMessage();
     }
-
-
+    else
+    {
+        loginsuccessMessage();
+        Admin_Menu();
+    }
     
-    
-    
-    
-    
-
 }

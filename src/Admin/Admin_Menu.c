@@ -1,18 +1,17 @@
-# include<stdio.h>
+#include <stdio.h>
 #include "Admin/Admin.h"
 #include "Menu/Main_Menu.h"
 #include "tools/color.h"
-
+#include "tools/hint.h"
 
 void Admin_Menu()
 {
-    printf("====================================================\n");
-    printf("| 1.查看所有商品 | 2.搜索商品 | 3.查看所有订单| 4.查看所有用户 | 5.删除用户 | 6.下架商品 | 7.注销|");
-    printf("======================================================\n");
+    admin_menuMessage();
 
     int op;
     
     printf("请输入您的操作：");
+    puts("");
     scanf("%d", &op);
     
     while(op < 1 || op > 7)

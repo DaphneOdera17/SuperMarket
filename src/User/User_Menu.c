@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "Menu/Main_Menu.h"
 #include "User/User.h"
+#include "tools/hint.h"
 
 void choose(int op)
 {
@@ -23,9 +24,8 @@ void choose(int op)
 
 void User_Menu()
 {
-    printf("+===========+===========+===========+===============+\n");
-    printf("| 1.注销登陆 | 2.我是买家 | 3.我是卖家 | 4.个人信息管理 |\n");
-    printf("+===========+===========+===========+===============+\n");
+    user_menuMessage();
+
     int op;
 
     printf("请输入您的操作：");
@@ -33,7 +33,7 @@ void User_Menu()
 
     while(op < 1 || op > 4)
     {
-        printf("操作符无效，请重新输入！\n");
+        failureMessage();
         printf("请输入您的操作：");
         scanf("%d", &op);
     }
