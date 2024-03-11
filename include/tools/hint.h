@@ -25,6 +25,8 @@ void admin_menuMessage();
 
 void info_menuMessage();
 
-void openErrorMessage();
+void open_ErrorMessage();
+
+void Print_UserInfo_Banner();
 
 #endif

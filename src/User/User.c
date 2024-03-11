@@ -5,7 +5,9 @@
 #include "User/User.h"
 #include "tools/color.h"
 #include "config.h"
+#include "tools/hint.h"
 
+static const char* FILEPATH = "src/Data/User_Info.txt";
 static User users[MAX_USER_NUMBER];
 static int Total_UserNumber = 0;
 
@@ -55,9 +57,6 @@ void User_Login()
     char password[MAX_PASSWORD_LENGTH];
     char saved_password[MAX_PASSWORD_LENGTH] = "123456";
 
-
-    //printf("请输入用户名：");
-
     getUserName(username);
 
     getPassword(password);
@@ -76,62 +75,46 @@ void User_Login()
     puts("登陆成功！");
     User_Menu();
     
-    
 }
 
-
-void Out_User()
-{
-    FILE* ptr;
-    ptr = fopen("src/Data/User_Info.txt" , "w");
-    if (fopen == NULL)
-    {
-        openErrorMessage();
-        return ;
-    }
-    else
-    {
-        for(int i = 0; i < Total_UserNumber; i++)
-        {
-            fprintf(ptr,"%s %s %s %s %s %.1f\n", users[i].id , users[i].name , users[i].password , users[i].tel , users[i].address , users[i].res);
-        }
-        fclose(ptr);
-        
-    }
-}
 
 void Print_UserInfo()
 {
-    for(int i = 0; i < Total_UserNumber; i++)
+    Print_UserInfo_Banner();
+    for(int i = 0; i < Total_UserNumber; i ++)
     {
-        printf("ID: %10s\n",users[i].id);
-        printf("Name: %10s\n",users[i].name);
-        printf("Password: %10s\n",users[i].password);
-        printf("Tel: %10s\n",users[i].tel);
-        printf("Address: %10s\n",users[i].address);
-        printf("Res: %10.1lf\n",users[i].res);
-        printf("------------------------------------\n");
+        printf("|%-6s |%-7s |%-15s |%-15s |%-15s |%-9.1lf |\n", \
+            users[i].id, users[i].name, users[i].password, users[i].tel, \
+            users[i].address, users[i].res);
+        printf("------------------------------------------------------------------------\n");
     }
+}
+
+void Out_User()
+{
+    FILE* ptr = fopen(FILEPATH, "w");
+    for (int i = 0; i < Total_UserNumber; i++)
+        fprintf(ptr, "%s %s %s %s %s %.1f\n", users[i].id, users[i].name, users[i].password, \
+users[i].tel, users[i].address, users[i].res);
+    fclose(ptr);
 }
 
 void Load_User()
 {
+    Total_UserNumber = 0;
     FILE *ptr;
     // 以只读方式打开文件
-    ptr = fopen("src/Data/User_Info.txt", "r");
+    ptr = fopen(FILEPATH, "r");
     if(ptr == NULL)
     {
-        printf("%s%s无法打开文件%s\n", BOLD, FRONT_RED, RESET);
-        return ;
+        open_ErrorMessage();
     }
-    int k = 0;
-    while(fscanf(ptr, "%s%s%s%s%s%lf", users[k].id, users[k].name, \
-                 users[k].password, users[k].tel, users[k].address, \
-                 &(users[k].res)) != EOF)
+    else
     {
-        k ++;
-        printf("%s %s %s %s %s %.1f\n", users[k].id , users[k].name , users[k].password , users[k].tel , users[k].address , users[k].res);
+        while (fscanf(ptr, "%s%s%s%s%s%lf", users[Total_UserNumber].id, users[Total_UserNumber].name,\
+        users[Total_UserNumber].password, users[Total_UserNumber].tel, \
+        users[Total_UserNumber].address, &(users[Total_UserNumber].res)) != EOF) 
+            Total_UserNumber++;
+        fclose(ptr);
     }
-    fclose(ptr);
-    Total_UserNumber = k;
 }

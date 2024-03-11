@@ -3,6 +3,7 @@
 #include "Menu/Main_Menu.h"
 #include "tools/color.h"
 #include "tools/hint.h"
+#include "Product/Product.h"
 #include "User/User.h"
 
 void Admin_Menu()
@@ -16,7 +17,7 @@ void Admin_Menu()
     
     while(op < 1 || op > 7)
     {
-        printf("%s%s无效的操作符,请重新再试!%s\n", BOLD, FRONT_RED, RESET);
+        failureMessage();
         printf("请输入您的操作：");
         scanf("%d",&op);
     } 
@@ -24,7 +25,7 @@ void Admin_Menu()
     switch (op)
     {
     case 1:
-        //
+        Print_Products();
         break;    
     case 2:
         //

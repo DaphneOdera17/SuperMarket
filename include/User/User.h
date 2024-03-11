@@ -14,7 +14,6 @@ typedef struct{
 }User;
 
 
-
 void User_Sign();
 
 void getPassword(char* password);
@@ -36,5 +35,7 @@ void Info_Menu();
 void Print_UserInfo();
 
 void Load_User();
+
+void Out_User();
 
 #endif
