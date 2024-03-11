@@ -14,7 +14,7 @@ void Seller_Menu()
 
     while( op < 1 || op >6)
     {
-        printf("%s%s无效的操作符,请重新再试!%s\n", BOLD, FRONT_RED, RESET);
+        failureMessage();
         printf("请输入您的操作：");
         scanf("%d", &op);
     }

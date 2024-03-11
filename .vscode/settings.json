@@ -2,6 +2,7 @@
     "files.associations": {
         "stdio.h": "c",
         "admin.h": "c",
-        "color.h": "c"
+        "color.h": "c",
+        "product.h": "c"
     }
 }

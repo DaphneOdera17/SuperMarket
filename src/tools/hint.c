@@ -69,6 +69,12 @@ static const char* INFO_MENU_BANNER = "\
 +============+============+========+==================+ \n\
 ";
 
+static const char* USER_INFO_BANNER = "\
++==========+==========+==============+==============+=========+ \n\
+|ID        |用户名    |联系方式      |地址          |余额     | \n\
++----------+----------+--------------+--------------+---------+ \n\
+";
+
 static const char* FAILURE = "\t\t*** 操作失败,请重新再试! ***";
 static const char* EXIT = "\t\t*** 退出成功! ***";
 static const char* LOGINFAILURE = "\t\t*** 登陆失败，请重新再试！***";
@@ -83,7 +89,7 @@ static const char* Seller_MENU_TITLE = "\n\t\t+-+ Seller Menu +-+";
 static const char* Buyer_MENU_TITLE = "\n\t\t+-+ Buyer Menu +-+";
 static const char* Info_MENU_TITLE = "\n\t\t+-+ Info Menu +-+";
 static const char* Admin_MENU_TITLE = "\n\t\t+-+ Admin Menu +-+";
-static const char* OPENERRORMESSAGE = "\t\t*** 打开文件失败！ ***";
+static const char* OPEN_ERROR = "\t\t*** 打开文件失败！ ***";
 
 void welcomeMessage() 
 {
@@ -155,7 +161,12 @@ void info_menuMessage()
     printf("\n%s%s%s", BOLD, INFO_MENU_BANNER, RESET);
 }
 
-void openErrorMessage()
+void open_ErrorMessage()
 {
-    printf("%s%s%s%s\n", BOLD, FRONT_RED , OPENERRORMESSAGE , RESET);
+    printf("%s%s%s%s\n", BOLD, FRONT_RED , OPEN_ERROR , RESET);
+}
+
+void Print_UserInfo_Banner()
+{
+    printf("%s%s%s", BOLD, USER_INFO_BANNER, RESET);
 }
