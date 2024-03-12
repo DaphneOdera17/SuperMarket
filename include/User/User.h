@@ -38,4 +38,8 @@ void Load_User();
 
 void Out_User();
 
+void Recharge();
+
+
+
 #endif

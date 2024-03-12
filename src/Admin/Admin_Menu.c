@@ -37,7 +37,7 @@ void Admin_Menu()
         Print_UserInfo();
         break;
     case 5:
-        // 
+        Delete_User();
         break;
     case 6:
         //

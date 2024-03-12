@@ -18,10 +18,27 @@ typedef struct
     // 2 为已售出
 }Product;
 
+typedef struct 
+{
+    char id[MAX_ID_LENGTH];
+    char good_id[MAX_ID_LENGTH];
+    double price;
+    char date[MAX_TIME_LENGTH];
+    char seller_id[MAX_ID_LENGTH];
+    char buyer_id[MAX_ID_LENGTH];
+}Order;
+
+
 void Load_Products();
 
 void Print_Products();
 
 void Out_Products();
+
+void Out_Order();
+
+void Load_Order();
+
+void Printf_Order();
 
 #endif
