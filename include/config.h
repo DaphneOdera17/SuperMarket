@@ -9,6 +9,7 @@
 #define MAX_ADRESS_LENGTH 50
 #define MAX_ID_LENGTH 15
 #define MAX_PRODUCT_NUMBER 500
+#define MAX_ORDER_NUMBER 500
 #define MAX_DIS_LENGTH 20
 #define MAX_TIME_LENGTH 10
 
@@ -16,5 +17,7 @@
 
 static const char* ADMIN_NAME = "Admin";
 static const char* ADMIN_PASSWORD = "123456";
+
+
 
 #endif

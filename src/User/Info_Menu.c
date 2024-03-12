@@ -8,6 +8,9 @@ void Info_Menu()
     info_menuMessage();
 
     int op;
+    
+    printf("请输入您的操作：");
+    scanf("%d", &op);
 
     while( op < 1 || op > 4)
     {
@@ -25,7 +28,7 @@ void Info_Menu()
             //
             break;
         case 3:
-            //
+            Recharge();
             break;
         case 4:
             User_Menu();

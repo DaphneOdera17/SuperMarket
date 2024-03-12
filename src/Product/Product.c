@@ -4,7 +4,9 @@
 
 static const char* FILEPATH = "src/Data/Goods_Info.txt";
 static int Total_ProductsNumber = 0;
+static int Total_OrdersNumber = 0;
 static Product goods[MAX_PRODUCT_NUMBER];
+static Order orders[MAX_ORDER_NUMBER];
 
 void Load_Products()
 {
@@ -54,5 +56,52 @@ void Out_Products()
     }
 
     fclose(ptr);
+}
+
+
+void Out_Order()
+{
+    FILE *ptr = fopen(FILEPATH,"w");
+    if(ptr == NULL)
+    for (int i = 0; i < Total_OrdersNumber; i++)
+    {
+        fprintf(ptr,"%s %s %.1f %s %s %s\n",orders[i].id , \
+        orders[i].good_id , orders[i].price , \
+        orders[i].date , orders[i].seller_id , \
+        orders[i].buyer_id);
+    }
+    fclose(ptr);
+}
+
+void Load_Order()
+{
+    FILE *ptr = fopen(FILEPATH, "r");
+    if (ptr == NULL)
+    {
+        open_ErrorMessage();
+        return ;
+    }
+    else 
+    {
+        Total_OrdersNumber = 0;
+        while(fscanf(ptr,"%s%s%lf%s%s%s",orders[Total_OrdersNumber].id,\
+        orders[Total_OrdersNumber].good_id ,&orders[Total_OrdersNumber].price,\
+        orders[Total_OrdersNumber].date , orders[Total_OrdersNumber].seller_id , \
+        orders[Total_OrdersNumber].buyer_id) != EOF)
+        Total_OrdersNumber++;
+    }
+    fclose(ptr);
+}
+
+void Printf_Order()
+{
+    for(int i = 0; i < Total_OrdersNumber ; i++)
+    {
+        printf("%-10s%-10s%-10.1f%-10s%-10s%-10s\n",orders[i].id , \
+        orders[i].good_id , orders[i].price , \
+        orders[i].date , orders[i].seller_id , \
+        orders[i].buyer_id);
+    }
+
 }
 

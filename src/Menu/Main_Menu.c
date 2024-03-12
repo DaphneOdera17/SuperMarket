@@ -27,9 +27,9 @@ void Main_Menu()
     }
     else if (op == 2)
     {
-        //User_Sign();
+        User_Sign();
     }
-    else if (op == 3)
+    else if (op == 3) // SOrry
     {
         Admin_Login();
     }

@@ -4,11 +4,11 @@
 #include "tools/hint.h"
 
 // 保留上一次最大的 ID
-static const char* FILEPATH = "src/data/Max_ID.txt";
+static const char* FILEPATH = "src/Data/Max_ID.txt";
 
 // type: U-用户 M-商品 T-订单
 // ID 只和时间顺序有关，如果有数据被删了，ID 也不会被新的 ID 填补
-void Generate_ID(char* s, char type)
+void Generate_ID(char* s, char type) // *s 也就是 字符串 对应 users[i].ID 
 {
     int uid, mid, tid;
     uid = mid = tid = 0;
@@ -40,7 +40,7 @@ void Generate_ID(char* s, char type)
             break;
     }
 
-    sprintf(s, "%c%05d", type, ID);
+    sprintf(s, "%c%05d", type, ID);// 意思就是 向 s 中写入 %c%05d 这样的字符串
     ptr = fopen(FILEPATH, "w");
     // 在 filepath 文件中显示 uid mid tid 的值
     fprintf(ptr, "%d %d %d\n", uid, mid, tid);
