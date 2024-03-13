@@ -11,6 +11,7 @@ typedef struct
     char discribe[MAX_DIS_LENGTH];
     char SellID[MAX_ID_LENGTH];
     char SellTime[MAX_TIME_LENGTH];
+    int cnt;
     int state;
     // state 有 3 种情况：
     // 0 为已经下架
@@ -40,5 +41,7 @@ void Out_Order();
 void Load_Order();
 
 void Printf_Order();
+
+void Add_Product();
 
 #endif

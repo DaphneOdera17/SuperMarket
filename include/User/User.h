@@ -26,7 +26,7 @@ void User_Menu();
 
 void Buyer_Menu();
 
-void Seller_Menu();
+void Seller_Menu(int Now_User);
 
 void choose(int op);
 

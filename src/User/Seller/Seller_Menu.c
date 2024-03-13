@@ -2,8 +2,9 @@
 #include "tools/color.h"
 #include "User/User.h"
 #include "tools/hint.h"
+#include "Product/Product.h"
 
-void Seller_Menu()
+void Seller_Menu(int Now_User)
 {
     seller_menuMessage();
 
@@ -21,7 +22,7 @@ void Seller_Menu()
     switch (op)
     {
     case 1:
-        //
+        Add_Product(Now_User);
         break;    
     case 2:
         //
