@@ -28,10 +28,10 @@ void Admin_Menu()
         Print_Products();
         break;    
     case 2:
-        //
+        Search_Product();
         break;
     case 3:
-        //
+        Print_AllOrders();
         break;
     case 4:
         Print_UserInfo();
@@ -40,7 +40,7 @@ void Admin_Menu()
         Delete_User();
         break;
     case 6:
-        //
+        Remove_Product();
         break;
     case 7:
         printf("%sLogout Successfully!%s",FRONT_RED,RESET);

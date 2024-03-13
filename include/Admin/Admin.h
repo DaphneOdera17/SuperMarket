@@ -7,4 +7,16 @@ void Admin_Login();
 
 void getpassword(char* password);
 
+void Search_Product();
+
+void Print_Products();
+
+void Print_AllOrders();
+
+void Print_UserInfo();
+
+void Delete_User();
+
+void Remove_Product();
+
 #endif

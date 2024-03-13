@@ -42,6 +42,6 @@ void Load_Order();
 
 void Printf_Order();
 
-void Add_Product();
+void Add_Product(char * Now_User);
 
 #endif
