@@ -7,11 +7,127 @@
 #include "config.h"
 #include "tools/hint.h"
 #include "tools/info.h"
+#include "Admin/Admin.h"
+#include <unistd.h>
 
 static const char* FILEPATH = "src/Data/User_Info.txt";
 static User users[MAX_USER_NUMBER];
 static int Total_UserNumber = 0;
 static int Now_User = 0;
+
+void Info_Menu()
+{
+    info_menuMessage();
+
+    int op;
+    
+    printf("请输入您的操作：");
+    scanf("%d", &op);
+
+    while( op < 1 || op > 4)
+    {
+        failureMessage();
+        printf("请输入您的操作：");
+        scanf("%d", &op);
+    }
+
+    switch(op)
+    {
+        case 1:
+            User_Info();
+            break;
+        case 2:
+            Modify_Info();
+            break;
+        case 3:
+            Recharge();
+            break;
+        case 4:
+            User_Menu();
+            break;
+    }
+}
+
+void Buyer_Menu()
+{
+    buyer_menuMessage();
+
+    int op;
+
+    printf("请输入您的操作：");
+    scanf("%d",&op);
+
+    while(op < 1 || op > 6)
+    {
+        failureMessage();
+        printf("请输入您的操作：");
+        scanf("%d",&op);
+    } 
+
+    switch (op)
+    {
+    case 1:
+        Print_Products();
+        break;    
+    case 2:
+        Search_Product();
+        break;
+    case 3:
+        Buy_Product();
+        break;
+    case 4:
+        Search_OwnOrders();
+        break;
+    case 5:
+        Print_ProductInfo();
+        break;
+    case 6:
+        User_Menu();
+        break;
+    }
+
+
+}
+
+void Seller_Menu(int Now_User)
+{
+    seller_menuMessage();
+
+    int op;
+
+    printf("请输入您的操作：");
+    scanf("%d", &op);
+
+    while( op < 1 || op >6)
+    {
+        failureMessage();
+        printf("请输入您的操作：");
+        scanf("%d", &op);
+    }
+    switch (op)
+    {
+    case 1:
+        Add_Product(users[Now_User].id);
+        break;    
+    case 2:
+        //
+        break;
+    case 3:
+        //
+        break;
+    case 4:
+        //
+        break;
+    case 5:
+        // 
+        break;
+    case 6:
+        User_Menu();
+        break;
+    }
+    
+}
+
 
 void choose(int op)
 {
@@ -99,20 +215,13 @@ void User_Login()
     char saved_password[MAX_PASSWORD_LENGTH];
 
     getUserName(username); // 获取了用户名
-
-
-
-  
-
     getPassword(password); // 获取密码
 
     puts("");
 
-
     //  如果用户存在： 用这个用户名对应的 saved_password 与输入的 password 比对
     //  如果不存在。那么就输出 不存在。
     // 你先用顺序查找
-
 
     for(int i = 0; i < Total_UserNumber; i++)
     {
@@ -154,6 +263,7 @@ void Print_UserInfo()
             users[i].address, users[i].res);
         printf("------------------------------------------------------------------------\n");
     }
+    Admin_Menu();
 }
 
 void Out_User()
@@ -201,6 +311,7 @@ void Recharge()
     users[0].res += res;
     printf("充值成功！\n");
     printf("目前您的余额为：%.1lf\n", users[0].res);
+    
 }
 
 
@@ -270,9 +381,7 @@ void Delete_User()
             {
                 users[j] = users[j + 1];
             }
-            
         }
-        
     }
 
     if(!flag)
@@ -282,5 +391,45 @@ void Delete_User()
     // 你可以先用 顺序查找写
     // 找到该 ID 用户 
     // 作者的方法是，将该位置 后面的所有都往前移动一个位置，就可以实现覆盖(被覆盖了不就是山了==)
+    Admin_Menu();
+}
+
+void User_Info()
+{
+    puts("");
+    loadingMessage();
+    sleep(0.5);
+    printf("%s%s您的信息为：%s\n", BOLD, FRONT_GREEN, RESET);
+    printf("用户名称: %s\n", users[Now_User].name);
+    printf("用户密码: %s\n", users[Now_User].password);
+    printf("用户联系方式: %s\n", users[Now_User].tel);
+    printf("用户地址: %s\n", users[Now_User].address);
+    printf("用户余额: %.2lf\n", users[Now_User].res);
+    
+    puts("");
+
+    printf("请输入您的操作：");
+    int op;
+    scanf("%d", &op);
+    
+}
+
+void Modify_Info()
+{
+    
+}
+
+void Buy_Product()
+{
+
+}
+
+void Search_OwnOrders()
+{
+
+}
+
+void Print_ProductInfo()
+{
 
 }
