@@ -11,8 +11,45 @@
 static const char* FILEPATH = "src/Data/User_Info.txt";
 static User users[MAX_USER_NUMBER];
 static int Total_UserNumber = 0;
+static int Now_User = 0;
 
+void choose(int op)
+{
+    switch (op)
+    {
+    case 1:
+        Main_Menu();
+        break;
+    case 2:
+        Buyer_Menu();
+        break;
+    case 3:
+        Seller_Menu(Now_User);
+        break;
+    case 4:
+        Info_Menu();
+        break;
+    }
+}
 
+void User_Menu()
+{
+    user_menuMessage();
+
+    int op;
+
+    printf("请输入您的操作：");
+    scanf("%d", &op);
+
+    while(op < 1 || op > 4)
+    {
+        failureMessage();
+        printf("请输入您的操作：");
+        scanf("%d", &op);
+    }
+
+    choose(op);
+}
 
 // 从终端获取密码（隐藏输入）
 void getPassword(char* password) {
@@ -76,11 +113,13 @@ void User_Login()
     //  如果不存在。那么就输出 不存在。
     // 你先用顺序查找
 
+
     for(int i = 0; i < Total_UserNumber; i++)
     {
         if(strcmp(username , users[i].name) == 0)
         {
             strcpy(&saved_password[i] , users[i].password);
+            Now_User = i;
             break;
         }
         else
@@ -152,7 +191,6 @@ void Load_User()
         fclose(ptr);
     }
 }
-
 
 
 void Recharge()
