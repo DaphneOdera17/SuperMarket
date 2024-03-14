@@ -9,8 +9,6 @@ void getpassword(char* password);
 
 void Search_Product();
 
-void Print_Products();
-
 void Print_AllOrders();
 
 void Print_UserInfo();

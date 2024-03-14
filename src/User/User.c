@@ -35,18 +35,10 @@ void Info_Menu()
 
     switch(op)
     {
-        case 1:
-            User_Info();
-            break;
-        case 2:
-            Modify_Info();
-            break;
-        case 3:
-            Recharge();
-            break;
-        case 4:
-            User_Menu();
-            break;
+        case 1:User_Info();break;
+        case 2:Modify_Info();break;
+        case 3:Recharge();break;
+        case 4:User_Menu();break;
     }
 }
 
@@ -68,27 +60,13 @@ void Buyer_Menu()
 
     switch (op)
     {
-    case 1:
-        Print_Products();
-        break;    
-    case 2:
-        // Search_Product();
-        break;
-    case 3:
-        Buy_Product();
-        break;
-    case 4:
-        Search_OwnOrders();
-        break;
-    case 5:
-        Print_ProductInfo();
-        break;
-    case 6:
-        User_Menu();
-        break;
+    case 1:Print_Products('U');break;    
+    case 2:// Search_Product();break;
+    case 3:Buy_Product();break;
+    case 4:Search_OwnOrders();break;
+    case 5:Print_ProductInfo();break;
+    case 6:User_Menu();break;
     }
-
-
 }
 
 void User_Menu()
@@ -153,24 +131,12 @@ void Seller_Menu(int Now_User)
     }
     switch (op)
     {
-    case 1:
-        Add_Product(users[Now_User].id);
-        break;    
-    case 2:
-        //
-        break;
-    case 3:
-        //
-        break;
-    case 4:
-        Delete_Product(users[Now_User].id);
-        break;
-    case 5:
-        // 
-        break;
-    case 6:
-        User_Menu();
-        break;
+    case 1:Add_Product(users[Now_User].id);break;    
+    case 2://break;
+    case 3://break;
+    case 4:Delete_Product(users[Now_User].id);break;
+    case 5:// break;
+    case 6:User_Menu();break;
     }
     
 }
@@ -180,18 +146,10 @@ void choose(int op)
 {
     switch (op)
     {
-    case 1:
-        Main_Menu();
-        break;
-    case 2:
-        Buyer_Menu();
-        break;
-    case 3:
-        Seller_Menu(Now_User);
-        break;
-    case 4:
-        Info_Menu();
-        break;
+    case 1:Main_Menu();break;
+    case 2:Buyer_Menu();break;
+    case 3:Seller_Menu(Now_User);break;
+    case 4:Info_Menu();break;
     }
 }
 
@@ -436,3 +394,4 @@ void Print_ProductInfo()
 {
 
 }
+

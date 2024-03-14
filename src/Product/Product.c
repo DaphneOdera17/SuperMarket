@@ -35,7 +35,7 @@ void Load_Products()
     fclose(ptr);
 }
 
-void Print_Products()
+void Print_Products(char type)
 {
     for(int i = 0; i < Total_ProductsNumber; i ++)
     {
@@ -45,8 +45,8 @@ void Print_Products()
             goods[i].SellID, goods[i].SellTime, \
             goods[i].cnt, goods[i].state);
     }
-    Admin_Menu();
-
+    if(type == 'U') Buyer_Menu();
+    else Admin_Menu();
 }
 
 void Out_Products()
@@ -149,11 +149,10 @@ void Add_Product(char *Now_User)
     fclose(ptr);
 }
 
+
 void Delete_Product(char *Now_User)
 {
     char goodid[MAX_ID_LENGTH];
-    int flag_user = 0; //0 表示用户不匹配  1 表示用户匹配
-    int flag_id = 0;//0 表示未查找到id 1 表示查找到
 
     printf("请输入需要删除的商品id: ");
     scanf("%s",goodid);
@@ -162,38 +161,37 @@ void Delete_Product(char *Now_User)
     {
         if (strcmp(goods[i].id , goodid) == 0)
         {
-            flag_id = 1;
-            break;  
-        }
-    }
-    
-
-    if(flag_id == 1)
-    {
-        for(int i = 0; i < Total_UserNumber; i++)
-        {
-            if(strcmp(goods[i].SellID , Now_User) == 0)
+            if(strcmp("A", Now_User) == 0)
             {
-                flag_user = 1;
                 goods[i].state = 0 ;//下架后 商品状态状态为 已下架
                 printf("下架成功！");
-                break;
+                Out_Products();
+                Admin_Menu();
             }
+            else
+            {
+                for(int i = 0; i < Total_ProductsNumber; i++)
+                {
+                    if(strcmp(goods[i].SellID , Now_User) == 0)
+                    {
+                        goods[i].state = 0 ;//下架后 商品状态状态为 已下架
+                        printf("下架成功！");
+                        return ;
+                    }
+                }
+                printf("您不是该商品的发布者，无法下架该商品!");
+                Seller_Menu(*Now_User);
+                return ;
+            }
+            
         }
-         
-        if(flag_user == 0)
-        {
-            printf("您不是该商品的发布者，无法下架该商品!");
-            Seller_Menu(*Now_User);
-        }
-    }
-    else 
-    {
-        printf("未查询到该商品！");
-        Seller_Menu(*Now_User);
-    }
-     
-    
-    
-      
+    }         
+    printf("未查询到该商品！");
+    Seller_Menu(*Now_User);
+}
+
+void Search_Product()
+{
+    printf("请输入您要查找的商品名称：");
+
 }

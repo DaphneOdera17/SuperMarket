@@ -32,7 +32,7 @@ typedef struct
 
 void Load_Products();
 
-void Print_Products();
+void Print_Products(char type);
 
 void Out_Products();
 
@@ -45,5 +45,7 @@ void Printf_Order();
 void Add_Product(char * Now_User);
 
 void Delete_Product(char *Now_User);
+
+void Search_Product();
 
 #endif

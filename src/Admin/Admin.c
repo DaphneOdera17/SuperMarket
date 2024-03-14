@@ -5,6 +5,8 @@
 #include "Admin/Admin.h"
 #include "config.h"
 #include "tools/hint.h"
+#include "tools/color.h"
+#include "Product/Product.h"
 
 void Admin_Login()
 {
@@ -48,5 +50,33 @@ void Admin_Login()
         loginsuccessMessage();
         Admin_Menu();
     }
-    
 }
+
+void Admin_Menu()
+{
+    admin_menuMessage();
+
+    int op;
+    
+    printf("请输入您的操作：");
+    scanf("%d", &op);
+    
+    while(op < 1 || op > 7)
+    {
+        failureMessage();
+        printf("请输入您的操作：");
+        scanf("%d",&op);
+    } 
+
+    switch (op)
+    {
+    case 1:Print_Products('A');break;    
+    case 2:// Search_Product();break;
+    case 3:// Print_AllOrders();break;
+    case 4:Print_UserInfo();break;
+    case 5:Delete_User();break;
+    case 6:Delete_Product("A");break;
+    case 7:printf("%sLogout Successfully!%s",FRONT_RED,RESET);Main_Menu();break;
+    }
+}
+
