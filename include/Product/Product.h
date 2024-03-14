@@ -44,4 +44,6 @@ void Printf_Order();
 
 void Add_Product(char * Now_User);
 
+void Delete_Product(char *Now_User);
+
 #endif

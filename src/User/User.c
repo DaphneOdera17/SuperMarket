@@ -9,6 +9,8 @@
 #include "tools/info.h"
 #include "Admin/Admin.h"
 #include <unistd.h>
+#include "Product/Product.h"
+#include "Menu/Main_Menu.h"
 
 static const char* FILEPATH = "src/Data/User_Info.txt";
 static User users[MAX_USER_NUMBER];
@@ -70,7 +72,7 @@ void Buyer_Menu()
         Print_Products();
         break;    
     case 2:
-        Search_Product();
+        // Search_Product();
         break;
     case 3:
         Buy_Product();
@@ -87,65 +89,6 @@ void Buyer_Menu()
     }
 
 
-}
-
-void Seller_Menu(int Now_User)
-{
-    seller_menuMessage();
-
-    int op;
-
-    printf("请输入您的操作：");
-    scanf("%d", &op);
-
-    while( op < 1 || op >6)
-    {
-        failureMessage();
-        printf("请输入您的操作：");
-        scanf("%d", &op);
-    }
-    switch (op)
-    {
-    case 1:
-        Add_Product(users[Now_User].id);
-        break;    
-    case 2:
-        //
-        break;
-    case 3:
-        //
-        break;
-    case 4:
-        //
-        break;
-    case 5:
-        // 
-        break;
-    case 6:
-        User_Menu();
-        break;
-    }
-    
-}
-
-
-void choose(int op)
-{
-    switch (op)
-    {
-    case 1:
-        Main_Menu();
-        break;
-    case 2:
-        Buyer_Menu();
-        break;
-    case 3:
-        Seller_Menu(Now_User);
-        break;
-    case 4:
-        Info_Menu();
-        break;
-    }
 }
 
 void User_Menu()
@@ -193,6 +136,66 @@ void getPassword(char* password) {
     tcsetattr(fileno(stdin), TCSANOW, &oldAttr);
 }
 
+void Seller_Menu(int Now_User)
+{
+    seller_menuMessage();
+
+    int op;
+
+    printf("请输入您的操作：");
+    scanf("%d", &op);
+
+    while( op < 1 || op >6)
+    {
+        failureMessage();
+        printf("请输入您的操作：");
+        scanf("%d", &op);
+    }
+    switch (op)
+    {
+    case 1:
+        Add_Product(users[Now_User].id);
+        break;    
+    case 2:
+        //
+        break;
+    case 3:
+        //
+        break;
+    case 4:
+        Delete_Product(users[Now_User].id);
+        break;
+    case 5:
+        // 
+        break;
+    case 6:
+        User_Menu();
+        break;
+    }
+    
+}
+
+
+void choose(int op)
+{
+    switch (op)
+    {
+    case 1:
+        Main_Menu();
+        break;
+    case 2:
+        Buyer_Menu();
+        break;
+    case 3:
+        Seller_Menu(Now_User);
+        break;
+    case 4:
+        Info_Menu();
+        break;
+    }
+}
+
+
 void getUserName(char* username)
 {
     printf("请输入用户名：");
@@ -213,42 +216,48 @@ void User_Login()
     char username[MAX_PASSWORD_LENGTH];
     char password[MAX_PASSWORD_LENGTH];
     char saved_password[MAX_PASSWORD_LENGTH];
+    int flag = 0; // 0 表示未查找到用户 1 表示查找到对应的用户
 
     getUserName(username); // 获取了用户名
+    
     getPassword(password); // 获取密码
 
     puts("");
 
-    //  如果用户存在： 用这个用户名对应的 saved_password 与输入的 password 比对
-    //  如果不存在。那么就输出 不存在。
-    // 你先用顺序查找
 
     for(int i = 0; i < Total_UserNumber; i++)
     {
         if(strcmp(username , users[i].name) == 0)
         {
-            strcpy(&saved_password[i] , users[i].password);
+            strcpy(saved_password , users[i].password);
             Now_User = i;
-            break;
+            flag = 1;
+        }
+    }
+    if(flag == 0)
+        {
+            printf("用户不存在,请重新再试！");
+            Main_Menu();
+
+        }
+//当用户存在但密码不匹配则进入循环 直到密码正确
+    while(flag == 1)
+    {
+        if(!(strcmp(password, saved_password) == 0))
+        {
+            printf("%s密码输入错误,请重新再试!%s\n", FRONT_RED, RESET);
+            getPassword(password);
+            puts("");
         }
         else
         {
-            printf("用户不存在！");
+            puts("登陆成功！");
+            User_Menu();
+            break;
         }
-
+    
     }
-
-    while(!(strcmp(password, saved_password) == 0))
-    {
-        printf("%s密码输入错误,请重新再试!%s\n", FRONT_RED, RESET);
-        printf("请输入密码：");
-
-        getPassword(password);
-        puts("");
-    }
-
-    puts("登陆成功！");
-    User_Menu();
+    
     
 }
 
@@ -329,7 +338,7 @@ void User_Sign()
     printf("请输入您的地址： ");
     scanf("%s",users[Total_UserNumber].address);
 
-// 他的余额 为 0  
+// 余额 为 0  
     printf("%s %s \n", users[Total_UserNumber].name, users[Total_UserNumber].password);
     users[Total_UserNumber].res = 0.0;
 
@@ -341,22 +350,16 @@ void User_Sign()
     Total_UserNumber ++;
 
 // 并且存储到 User_Info.txt
-    // 参考 Out._User();
+
     
     FILE* ptr = fopen(FILEPATH , "w"); // write -> w写入 read -> 只读
-
-    // 首先， 你 total- 已经加 1 了， 为什么还加
-    
-    // 家不加目前美影响
     
     fprintf(ptr, "%s %s %s %s %s %.1f\n", users[Total_UserNumber].id, \
     users[Total_UserNumber].name, users[Total_UserNumber].password, \
     users[Total_UserNumber].tel, users[Total_UserNumber].address, users[Total_UserNumber].res);
-    
-    
+
     fclose(ptr);
     
-
     Out_User();
     User_Menu();
     
@@ -399,7 +402,7 @@ void User_Info()
     puts("");
     loadingMessage();
     sleep(0.5);
-    printf("%s%s您的信息为：%s\n", BOLD, FRONT_GREEN, RESET);
+    printf("%s%s您的信息为: %s\n", BOLD, FRONT_GREEN, RESET);
     printf("用户名称: %s\n", users[Now_User].name);
     printf("用户密码: %s\n", users[Now_User].password);
     printf("用户联系方式: %s\n", users[Now_User].tel);
