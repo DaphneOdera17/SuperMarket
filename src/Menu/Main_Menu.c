@@ -21,21 +21,10 @@ void Main_Menu()
         scanf("%d",&op);
     } 
 
-    if (op == 1)
-    {
-        User_Login();
-    }
-    else if (op == 2)
-    {
-        User_Sign();
-    }
-    else if (op == 3) // SOrry
-    {
-        Admin_Login();
-    }
-    else if (op == 4)
-    {
-        exitMessage();
-        exit(0);
+    if (op == 1)User_Login();
+    else if (op == 2)User_Sign();
+    else if (op == 3)Admin_Login();
+    else if (op == 4){
+        exitMessage();exit(0);
     }    
 }  
