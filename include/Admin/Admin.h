@@ -7,7 +7,7 @@ void Admin_Login();
 
 void getpassword(char* password);
 
-void Search_Product();
+void Search_Product(char type);
 
 void Print_AllOrders();
 

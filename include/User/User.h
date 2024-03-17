@@ -46,8 +46,9 @@ void Modify_Info();
 
 void Buy_Product();
 
-void Search_OwnOrders();
 
 void Print_ProductInfo();
+
+
 
 #endif

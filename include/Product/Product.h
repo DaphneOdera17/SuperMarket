@@ -19,15 +19,6 @@ typedef struct
     // 2 为已售出
 }Product;
 
-typedef struct 
-{
-    char id[MAX_ID_LENGTH];
-    char good_id[MAX_ID_LENGTH];
-    double price;
-    char date[MAX_TIME_LENGTH];
-    char seller_id[MAX_ID_LENGTH];
-    char buyer_id[MAX_ID_LENGTH];
-}Order;
 
 
 void Load_Products();
@@ -46,6 +37,10 @@ void Add_Product(char * Now_User);
 
 void Delete_Product(char *Now_User);
 
-void Search_Product();
+void Search_Product(char type);
+
+int search(char *s);
+
+
 
 #endif

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "Product/Product.h"
+#include "Order/Order.h"
 #include "tools/hint.h"
 #include "tools/info.h"
 #include "Admin/Admin.h"
@@ -10,8 +11,8 @@ static const char* FILEPATH = "src/Data/Goods_Info.txt";
 static int Total_ProductsNumber = 0;
 static int Total_OrdersNumber = 0;
 static int Total_UserNumber = 0;
-static Product goods[MAX_PRODUCT_NUMBER];
-static Order orders[MAX_ORDER_NUMBER];
+Product goods[MAX_PRODUCT_NUMBER];
+extern Order orders[MAX_ORDER_NUMBER];
 
 void Load_Products()
 {
@@ -66,50 +67,6 @@ void Out_Products()
 }
 
 
-void Out_Order()
-{
-    FILE *ptr = fopen(FILEPATH,"w");
-    if(ptr == NULL)
-    for (int i = 0; i < Total_OrdersNumber; i++)
-    {
-        fprintf(ptr,"%s %s %.1f %s %s %s\n",orders[i].id , \
-        orders[i].good_id , orders[i].price , \
-        orders[i].date , orders[i].seller_id , \
-        orders[i].buyer_id);
-    }
-    fclose(ptr);
-}
-
-void Load_Order()
-{
-    FILE *ptr = fopen(FILEPATH, "r");
-    if (ptr == NULL)
-    {
-        open_ErrorMessage();
-        return ;
-    }
-    else 
-    {
-        Total_OrdersNumber = 0;
-        while(fscanf(ptr,"%s%s%lf%s%s%s",orders[Total_OrdersNumber].id,\
-        orders[Total_OrdersNumber].good_id ,&orders[Total_OrdersNumber].price,\
-        orders[Total_OrdersNumber].date , orders[Total_OrdersNumber].seller_id , \
-        orders[Total_OrdersNumber].buyer_id) != EOF)
-        Total_OrdersNumber++;
-    }
-    fclose(ptr);
-}
-
-void Printf_Order()
-{
-    for(int i = 0; i < Total_OrdersNumber ; i++)
-    {
-        printf("%-10s%-10s%-10.1f%-10s%-10s%-10s\n",orders[i].id , \
-        orders[i].good_id , orders[i].price , \
-        orders[i].date , orders[i].seller_id , \
-        orders[i].buyer_id);
-    }
-}
 
 
 void Add_Product(char *Now_User)
@@ -156,6 +113,8 @@ void Delete_Product(char *Now_User)
 
     printf("请输入需要删除的商品id: ");
     scanf("%s",goodid);
+
+
     
     for(int i = 0; i < Total_ProductsNumber; i++)
     {
@@ -183,15 +142,57 @@ void Delete_Product(char *Now_User)
                 Seller_Menu(*Now_User);
                 return ;
             }
-            
         }
     }         
     printf("未查询到该商品！");
     Seller_Menu(*Now_User);
 }
 
-void Search_Product()
+void Search_Product(char type)
 {
-    printf("请输入您要查找的商品名称：");
+//可以按照商品名称商品名称查找商品
+    char a[MAX_NAME_LENGTH];
 
+    printf("请输入您要查找的商品名称或商品id: ");
+    scanf("%s", a);
+    extern int Now_User;
+
+    int flag = search(a);
+    if(flag == -1)
+    {
+        printf("未查找到商品！");
+        if(type == 'U') Buyer_Menu();
+        else if (type == 'A') Admin_Menu();
+        else Seller_Menu(Now_User);
+    }
+    else
+    {
+        printf("商品id:%s \n", goods[flag].id );
+        printf("商品名称：%s \n",goods[flag].name);
+        printf("商品价格：%.1f\n", goods[flag].price);
+        printf("商品描述：%s\n",goods[flag].discribe);
+        printf("上架时间：%s\n",goods[flag].SellTime);
+        printf("剩余数量：%d\n",goods[flag].cnt);
+        switch(goods[flag].state)
+        {
+            case 0: printf("商品状态： 已下架 "); break;
+            case 1: printf("商品状态： 在售中 "); break;
+            case 2: printf("商品状态： 已售空 "); break;
+        }
+        if(type == 'U') Buyer_Menu();
+        if(type == 'A') Admin_Menu();
+        if(type == 'S') Seller_Menu(Now_User);
+    }
+}
+
+int search(char *s)
+{
+    for(int i = 0 ; i < Total_ProductsNumber ; i++)
+    {
+        if(strcmp(s , goods[i].name) == 0 || strcmp(s ,goods[i].id) == 0)
+        {
+            return i;
+        }
+    }
+    return -1;
 }
