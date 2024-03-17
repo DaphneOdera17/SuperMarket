@@ -41,6 +41,6 @@ void Search_Product(char type);
 
 int search(char *s);
 
-
+Product* Get_Good(int idx);
 
 #endif

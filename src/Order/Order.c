@@ -14,10 +14,8 @@ static Order orders[MAX_ORDER_NUMBER];
 
 void Out_Order()
 {
-    printf("!0");
     FILE *ptr = fopen(FILEPATH,"w");
     if(ptr == NULL)
-    
     {
         open_ErrorMessage();
         return ;
@@ -42,7 +40,6 @@ void Load_Order()
     }
     else 
     {
-        Total_OrdersNumber = 0;
         while(fscanf(ptr,"%s%s%lf%s%s%s",orders[Total_OrdersNumber].id,\
         orders[Total_OrdersNumber].good_id ,&orders[Total_OrdersNumber].price,\
         orders[Total_OrdersNumber].date , orders[Total_OrdersNumber].seller_id , \
@@ -65,25 +62,30 @@ void Print_Orders(char type)
     else Admin_Menu();
 }
 
-void Add_Order(int i, char *user, Good good)
+void Add_Order(int idx, char* user)
 {
+    Product* good = Get_Good(idx);
+    
     Generate_ID(orders[Total_OrdersNumber].id , 'T');
-    strcpy(orders[Total_OrdersNumber].good_id, good;
+    strcpy(orders[Total_OrdersNumber].good_id, good->id);
     Get_Time(orders[Total_OrdersNumber].date);
-    orders[Total_OrdersNumber].price = goods[i].price;
-    strcpy(orders[Total_OrdersNumber].seller_id , goods[i].SellID);
+    orders[Total_OrdersNumber].price = good->price;
+    strcpy(orders[Total_OrdersNumber].seller_id , good->SellID);
     strcpy(orders[Total_OrdersNumber].buyer_id , user);
+    
 
     //买家买完订单后 添加订单 输入信息到txt
+    
     FILE* ptr = fopen(FILEPATH , "w");
-    fprintf(ptr, "%10s%10s%.1lf%10s%10s%10s\n", orders[Total_OrdersNumber].id , \
+    
+    fprintf(ptr, "%s %s %.1lf %s %s %s\n", orders[Total_OrdersNumber].id , \
     orders[Total_OrdersNumber].good_id , orders[Total_OrdersNumber].price , \
     orders[Total_OrdersNumber].date , orders[Total_OrdersNumber].seller_id , \
     orders[Total_OrdersNumber].buyer_id);
     fclose(ptr);
-
+    
+    Out_Order();
     Total_OrdersNumber++;
-
 }
 
 void Search_OwnOrders(char type, char *id)

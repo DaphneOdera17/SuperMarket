@@ -214,12 +214,8 @@ void User_Login()
             User_Menu();
             break;
         }
-    
     }
-    
-    
 }
-
 
 void Print_UserInfo()
 {
@@ -243,9 +239,6 @@ users[i].tel, users[i].address, users[i].res);
     fclose(ptr);
 }
 
-
-// 
-
 void Load_User()
 {
     Total_UserNumber = 0;
@@ -258,10 +251,6 @@ void Load_User()
     }
     else
     {
-        //这里就是把文件信息一行一行读取
-        // 就跟你 scanf 一样的
-        // 第 i + 1 行的用户名就是 users[i].name 密码 users[i].password
-
         while (fscanf(ptr, "%s%s%s%s%s%lf", users[Total_UserNumber].id, users[Total_UserNumber].name,\
         users[Total_UserNumber].password, users[Total_UserNumber].tel, \
         users[Total_UserNumber].address, &(users[Total_UserNumber].res)) != EOF) 
@@ -277,6 +266,7 @@ void Recharge()
     printf("请输入需要充值的金额： ");
     scanf("%lf",&res);
     users[Now_User].res += res;
+    Out_User();
     printf("充值成功！\n");
     printf("目前您的余额为：%.1lf\n", users[Now_User].res);
     Info_Menu();
@@ -287,7 +277,6 @@ void User_Sign()
 {
 // 注册用户
 // 让他输入 姓名、密码、联系方式、地址
-
     printf("请输入您的姓名： ");
     scanf("%s",users[Total_UserNumber].name);
     printf("请输入您的密码： ");
@@ -301,7 +290,6 @@ void User_Sign()
     printf("%s %s \n", users[Total_UserNumber].name, users[Total_UserNumber].password);
     users[Total_UserNumber].res = 0.0;
 
-    
 // ID 通过 info 里面的 Generate_ID 生成
     Generate_ID(users[Total_UserNumber].id, 'U');
 
@@ -309,7 +297,6 @@ void User_Sign()
     Total_UserNumber ++;
 
 // 并且存储到 User_Info.txt
-
     
     FILE* ptr = fopen(FILEPATH , "w"); // write -> w写入 read -> 只读
     
@@ -350,9 +337,6 @@ void Delete_User()
     {
         puts("未找到该用户");
     }
-    // 你可以先用 顺序查找写
-    // 找到该 ID 用户 
-    // 作者的方法是，将该位置 后面的所有都往前移动一个位置，就可以实现覆盖(被覆盖了不就是山了==)
     Admin_Menu();
 }
 
@@ -412,9 +396,6 @@ void Modify_Info()
         }
         default: printf("无效操作，请重试！");Info_Menu() ; break;
     }
-
-
-    
 }
 
 void Buy_Product()
@@ -465,13 +446,13 @@ void Buy_Product()
             }
             else
             {
-                users[Now_User].res -= goods[flag].price ; 
+                users[Now_User].res -= goods[flag].price; 
+                Out_User();
                 printf("购买成功！\n");
-                Add_Order(flag);
+                Add_Order(flag, users[Now_User].id);
                 printf("当前账户余额为： %.1f",users[Now_User].res);
                 Buyer_Menu();
             }
-
         }
         else
         {

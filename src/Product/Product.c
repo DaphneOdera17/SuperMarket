@@ -14,6 +14,11 @@ static int Total_UserNumber = 0;
 Product goods[MAX_PRODUCT_NUMBER];
 extern Order orders[MAX_ORDER_NUMBER];
 
+Product* Get_Good(int idx)
+{
+    return goods + idx;
+}
+
 void Load_Products()
 {
     FILE *ptr = fopen(FILEPATH, "r");
@@ -65,9 +70,6 @@ void Out_Products()
 
     fclose(ptr);
 }
-
-
-
 
 void Add_Product(char *Now_User)
 {
