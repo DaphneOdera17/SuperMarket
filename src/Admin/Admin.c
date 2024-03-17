@@ -7,6 +7,7 @@
 #include "tools/hint.h"
 #include "tools/color.h"
 #include "Product/Product.h"
+#include "Order/Order.h"
 
 void Admin_Login()
 {
@@ -44,6 +45,7 @@ void Admin_Login()
     if(!(strcmp(name, ADMIN_NAME) == 0 && strcmp(password, ADMIN_PASSWORD) == 0))
     {
         loginfailureMessage();
+        Main_Menu();
     }
     else
     {
@@ -71,8 +73,8 @@ void Admin_Menu()
     switch (op)
     {
     case 1:Print_Products('A');break;    
-    case 2:// Search_Product();break;
-    case 3:// Print_AllOrders();break;
+    case 2:Search_Product('A');break;
+    case 3:Print_Orders('A');break;
     case 4:Print_UserInfo();break;
     case 5:Delete_User();break;
     case 6:Delete_Product("A");break;

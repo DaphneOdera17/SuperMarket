@@ -11,11 +11,13 @@
 #include <unistd.h>
 #include "Product/Product.h"
 #include "Menu/Main_Menu.h"
+#include "Order/Order.h"
 
 static const char* FILEPATH = "src/Data/User_Info.txt";
 static User users[MAX_USER_NUMBER];
 static int Total_UserNumber = 0;
-static int Now_User = 0;
+extern Product goods[MAX_PRODUCT_NUMBER];
+int Now_User = 0;
 
 void Info_Menu()
 {
@@ -61,9 +63,9 @@ void Buyer_Menu()
     switch (op)
     {
     case 1:Print_Products('U');break;    
-    case 2:// Search_Product();break;
+    case 2:Search_Product('U');break;
     case 3:Buy_Product();break;
-    case 4:Search_OwnOrders();break;
+    case 4:Search_OwnOrders('U', users[Now_User].id);break;
     case 5:Print_ProductInfo();break;
     case 6:User_Menu();break;
     }
@@ -132,13 +134,12 @@ void Seller_Menu(int Now_User)
     switch (op)
     {
     case 1:Add_Product(users[Now_User].id);break;    
-    case 2://break;
+    case 2:Search_Product('S');break;
     case 3://break;
     case 4:Delete_Product(users[Now_User].id);break;
-    case 5:// break;
+    case 5:Search_OwnOrders('S', users[Now_User].id);break;
     case 6:User_Menu();break;
     }
-    
 }
 
 
@@ -275,10 +276,10 @@ void Recharge()
     double res;
     printf("请输入需要充值的金额： ");
     scanf("%lf",&res);
-    users[0].res += res;
+    users[Now_User].res += res;
     printf("充值成功！\n");
-    printf("目前您的余额为：%.1lf\n", users[0].res);
-    
+    printf("目前您的余额为：%.1lf\n", users[Now_User].res);
+    Info_Menu();
 }
 
 
@@ -369,25 +370,116 @@ void User_Info()
     
     puts("");
 
-    printf("请输入您的操作：");
-    int op;
-    scanf("%d", &op);
-    
+    Info_Menu();
 }
 
 void Modify_Info()
 {
+    int op;
+    char password[MAX_PASSWORD_LENGTH];
+    char address[MAX_ADRESS_LENGTH];
+    char tel[MAX_TEL_LENGTH];
+    printf("请输入要修改的信息:1.修改密码 2.地址 3.联系方式 \n");
+    scanf("%d",&op);
+    switch(op)
+    {
+        case 1: 
+        {
+            printf("请输入密码: ");
+            scanf("%s",password);
+            strcpy(users[Now_User].password , password);
+            printf("修改成功！");
+            Info_Menu() ;
+            break;
+        }
+        case 2: 
+        {
+            printf("请输入地址: ");
+            scanf("%s",address); 
+            strcpy(users[Now_User].address , address);
+            printf("修改成功！");
+            Info_Menu() ;
+            break;
+        }
+        case 3: 
+        {
+            printf("请输入联系方式: ");
+            scanf("%s",tel); 
+            strcpy(users[Now_User].tel , tel);
+            printf("修改成功！");
+            Info_Menu() ;
+            break;
+        }
+        default: printf("无效操作，请重试！");Info_Menu() ; break;
+    }
+
+
     
 }
 
 void Buy_Product()
 {
+    char ch;
+    char a[MAX_NAME_LENGTH];
 
-}
+    printf("请输入您要查找的商品名称或商品id: ");
+    scanf("%s", a);
+    extern int Now_User;
 
-void Search_OwnOrders()
-{
+    int flag = search(a);
+    if(flag == -1)
+    {
+        printf("未查找到商品！");
+        Buyer_Menu();
+    }
+    else
+    {
+        printf("商品id:%s \n", goods[flag].id );
+        printf("商品名称：%s \n",goods[flag].name);
+        printf("商品价格：%.1f\n", goods[flag].price);
+        printf("商品描述：%s\n",goods[flag].discribe);
+        printf("上架时间：%s\n",goods[flag].SellTime);
+        printf("剩余数量：%d\n",goods[flag].cnt);
+        switch(goods[flag].state)
+        {
+            case 0: printf("商品状态： 已下架 \n"); break;
+            case 1: printf("商品状态： 在售中 \n"); break;
+            case 2: printf("商品状态： 已售空 \n"); break;
+        }
 
+        printf("您确定购买此商品吗?请输入Yes/No\n");//Y表示确定购买 N表示取消购买
+        char ch[5];
+        scanf("%s",ch);
+    
+        if(strcmp(ch , "Yes") == 0)
+        {
+            if(users[Now_User].res < goods[flag].price)
+            {
+                printf("余额不足，请前往个人信息管理充值后购买！");
+                User_Menu();
+            }
+            else if(goods[flag].state == 0 || goods[flag].state == 2)
+            {
+                printf("该商品已下架或已售空，请选择其他商品购买！");
+                Buyer_Menu();
+            }
+            else
+            {
+                users[Now_User].res -= goods[flag].price ; 
+                printf("购买成功！\n");
+                Add_Order(flag);
+                printf("当前账户余额为： %.1f",users[Now_User].res);
+                Buyer_Menu();
+            }
+
+        }
+        else
+        {
+            printf("已取消购买！");Buyer_Menu();
+        }
+           
+    }
+    
 }
 
 void Print_ProductInfo()
