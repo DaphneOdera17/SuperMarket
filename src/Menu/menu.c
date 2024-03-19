@@ -1,10 +1,8 @@
+#include "interface/interface.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "tools/color.h"
-#include "Admin/Admin.h"
-#include "User/User.h"
-#include "tools/hint.h"
 
+/*
 void Main_Menu()
 {
     main_menuMessage();
@@ -28,3 +26,4 @@ void Main_Menu()
         exitMessage();exit(0);
     }    
 }  
+*/

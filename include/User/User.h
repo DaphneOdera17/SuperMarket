@@ -13,42 +13,28 @@ typedef struct{
     double res; // 用户余额
 }User;
 
+int SearchUserID(char* id);
 
-void User_Sign();
-
-void getPassword(char* password);
-
-void getUserName(char* username);
-
-void User_Login();
-
-void User_Menu();
-
-void Buyer_Menu();
-
-void Seller_Menu(int Now_User);
-
-void choose(int op);
-
-void Info_Menu();
-
-void Print_UserInfo();
-
-void Load_User();
+User *Get_User(int idx);
 
 void Out_User();
 
-void Recharge();
+void Print_UserInfo();
 
 void User_Info();
 
-void Modify_Info();
+int SearchUserID(char* id);
 
-void Buy_Product();
+int SearchUserName(char *name);
 
+void Recharge();
 
-void Print_ProductInfo();
+int Add_User(User* tmp);
 
+void Delete_User(char *name);
 
+//void getUserName(char* username);
+
+//void getPassword(char* password);
 
 #endif

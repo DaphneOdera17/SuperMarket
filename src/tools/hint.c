@@ -90,6 +90,7 @@ static const char* Buyer_MENU_TITLE = "\n\t\t+-+ Buyer Menu +-+";
 static const char* Info_MENU_TITLE = "\n\t\t+-+ Info Menu +-+";
 static const char* Admin_MENU_TITLE = "\n\t\t+-+ Admin Menu +-+";
 static const char* OPEN_ERROR = "\t\t*** 打开文件失败！ ***";
+static const char* SUCCESSFUL = "\t\t*** 操作成功！***";
 
 void welcomeMessage() 
 {
@@ -169,4 +170,9 @@ void open_ErrorMessage()
 void Print_UserInfo_Banner()
 {
     printf("%s%s%s", BOLD, USER_INFO_BANNER, RESET);
+}
+
+void successful()
+{
+    printf("%s%s%s\n", BOLD, SUCCESSFUL, RESET);
 }

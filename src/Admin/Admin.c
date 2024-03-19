@@ -1,26 +1,18 @@
+#include "interface/interface.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "Menu/Main_Menu.h"
-#include "Admin/Admin.h"
-#include "config.h"
-#include "tools/hint.h"
-#include "tools/color.h"
-#include "Product/Product.h"
-#include "Order/Order.h"
 
 void Admin_Login()
 {
-    char ch;
-    char name[20];
-    char password[20];
+    char ch, name[20], password[20];
 
-    printf("请输入管理员姓名:  ");
+    printf("请输入管理员姓名: ");
     scanf("%s", name);
     getchar();
 
     int i = 0;
-    printf("请输入密码:  ");
+    printf("请输入密码: ");
     while(1)
     {
         system("stty -icanon"); // 设置一次性读完操作，即不用回车也能获取字符
@@ -36,9 +28,7 @@ void Admin_Login()
             break;
         }
         else
-        {   
             password[i++] = ch;
-        }
     }
     printf("\n");
 
@@ -54,6 +44,7 @@ void Admin_Login()
     }
 }
 
+/*
 void Admin_Menu()
 {
     admin_menuMessage();
@@ -81,4 +72,4 @@ void Admin_Menu()
     case 7:printf("%sLogout Successfully!%s",FRONT_RED,RESET);Main_Menu();break;
     }
 }
-
+*/
