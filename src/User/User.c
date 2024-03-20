@@ -1,7 +1,6 @@
 #include "interface/interface.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <termios.h>
 #include <string.h>
 #include <unistd.h>
 
@@ -70,12 +69,9 @@ int SearchUserName(char *name)
     return -1;
 }
 
-void Recharge()
+void Recharge(double res)
 {
     User *tmp = Get_User(Now_User);
-    double res;
-    printf("请输入需要充值的金额： ");
-    scanf("%lf",&res);
     tmp->res += res;
     printf("充值成功！\n");
     printf("目前您的余额为：%.1lf\n", tmp->res);
@@ -108,33 +104,18 @@ void getUserName(char* username)
     char c;
     while((c = getchar()) != '\n' && i < MAX_USERNAME_LENGTH - 1){
         username[i ++] = c;
-    }
+    }             
     username[i] = '\0';
 }
 
-// 从终端获取密码（隐藏输入）
-void getPassword(char* password) {
-    struct termios oldAttr, newAttr;
-    
-    // 禁止终端回显
-    tcgetattr(fileno(stdin), &oldAttr);
-    newAttr = oldAttr;
-    newAttr.c_lflag &= ~(ICANON | ECHO);
-    tcsetattr(fileno(stdin), TCSAFLUSH, &newAttr);
-    
-    printf("请输入密码：");
-    // 读取密码
-    int i = 0;
-    char c;
-    while ((c = getchar()) != '\n' && i < MAX_PASSWORD_LENGTH - 1) {
-        password[i++] = c;
-        putchar('*');  // 回显星号
-    }
-    password[i] = '\0';
-    
-    // 恢复终端设置
-    tcsetattr(fileno(stdin), TCSANOW, &oldAttr);
+int check(char *name, char *pwd)
+{
+    int idx = SearchUserName(name);
+    if(idx == -1)
+        return -1;
+    return strcmp(users[idx].password, pwd) == 0;
 }
+
 
 /*
 void Info_Menu()
@@ -293,84 +274,6 @@ void Modify_Info()
 */
 
 /*
-void User_Login()
-{
-    getchar();
-
-    char username[MAX_PASSWORD_LENGTH];
-    char password[MAX_PASSWORD_LENGTH];
-    char saved_password[MAX_PASSWORD_LENGTH];
-    int flag = 0; // 0 表示未查找到用户 1 表示查找到对应的用户
-
-    getUserName(username); // 获取了用户名
-    getPassword(password); // 获取密码
-    puts("");
-
-    if(SearchUserName == -1)
-    {
-
-    }
-//当用户存在但密码不匹配则进入循环 直到密码正确
-    while(flag == 1)
-    {
-        if(!(strcmp(password, saved_password) == 0))
-        {
-            printf("%s密码输入错误,请重新再试!%s\n", FRONT_RED, RESET);
-            getPassword(password);
-            puts("");
-        }
-        else
-        {
-            puts("登陆成功！");
-            User_Menu();
-            break;
-        }
-    }
-}
-*/
-
-/*
-void User_Sign()
-{
-// 注册用户
-// 让他输入 姓名、密码、联系方式、地址
-    
-
-// ID 通过 info 里面的 Generate_ID 生成
-    Generate_ID(users[Total_UserNumber].id, 'U');
-
-    printf("%s\n", users[Total_UserNumber].id);
-    Total_UserNumber ++;
-}
-
-void Delete_User()
-{
-    // 提示需要输入的用户 ID
-    char id[MAX_ID_LENGTH];
-    printf("请输入您要删除的id: ");
-    scanf("%s", id);
-    printf("%s", id);
-    // 查找用户 ID （带实现： 用二分查找）
-    int flag = 0; // flag 为 0 表示未找到， 为 1 表示已经找到
-    for(int i = 0; i < Total_UserNumber ; i++)
-    {
-        if(strcmp(id , users[i].id) == 0)
-        {
-            flag = 1;
-            for(int j = i ; j < Total_UserNumber - 1; j ++)
-            {
-                users[j] = users[j + 1];
-            }
-        }
-    }
-
-    if(!flag)
-    {
-        puts("未找到该用户");
-    }
-    Admin_Menu();
-}
-
 void Buy_Product()
 {
     char ch;

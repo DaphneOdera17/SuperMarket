@@ -3,6 +3,10 @@
 
 void Main_Menu();
 
-typedef enum {MAIN, USER, SELLER, BUYER, ADMIN, PRODUCTS, ORDER} Menu;
+typedef enum {MAIN, USER, SELLER, BUYER, ADMIN, PRODUCTS, MODIFY, INFO} Menu;
+
+extern const int optionNumber[];
+
+int menu(Menu type);
 
 #endif

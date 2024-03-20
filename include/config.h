@@ -12,12 +12,12 @@
 #define MAX_ORDER_NUMBER 500
 #define MAX_DIS_LENGTH 20
 #define MAX_TIME_LENGTH 10
+#define MENU_NUMBER 8
+#define MAX_LEN 64
 
 #define DEL_NUM 0x7F // 删除键
 
 static const char* ADMIN_NAME = "Admin";
 static const char* ADMIN_PASSWORD = "123456";
-
-
 
 #endif

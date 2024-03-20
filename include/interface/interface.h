@@ -10,4 +10,6 @@
 #include "tools/hint.h"
 #include "tools/info.h"
 
+typedef void (*HANDLE)(void); // 定义函数指针
+
 #endif
