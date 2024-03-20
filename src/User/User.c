@@ -7,7 +7,6 @@
 static const char* FILEPATH = "src/Data/User_Info.txt";
 static User users[MAX_USER_NUMBER];
 static int Total_UserNumber = 0;
-int Now_User = 0;
 
 void Load_User()
 {
@@ -89,24 +88,16 @@ int Add_User(User* tmp)
     return 0;
 }
 
-void Delete_User(char *name)
+int Delete_User(char *name)
 {
     int idx = SearchUserName(name);
+    if(idx == -1)
+        return -1;
     for(int i = idx; i < Total_UserNumber - 1; i ++)
         users[i] = users[i + 1];
+    return 0;
 }
 
-void getUserName(char* username)
-{
-    printf("请输入用户名：");
-
-    int i = 0;
-    char c;
-    while((c = getchar()) != '\n' && i < MAX_USERNAME_LENGTH - 1){
-        username[i ++] = c;
-    }             
-    username[i] = '\0';
-}
 
 int check(char *name, char *pwd)
 {
@@ -115,163 +106,6 @@ int check(char *name, char *pwd)
         return -1;
     return strcmp(users[idx].password, pwd) == 0;
 }
-
-
-/*
-void Info_Menu()
-{
-    info_menuMessage();
-
-    int op;
-    
-    printf("请输入您的操作：");
-    scanf("%d", &op);
-
-    while( op < 1 || op > 4)
-    {
-        failureMessage();
-        printf("请输入您的操作：");
-        scanf("%d", &op);
-    }
-
-    switch(op)
-    {
-        case 1:User_Info();break;
-        case 2:Modify_Info();break;
-        case 3:Recharge();break;
-        case 4:User_Menu();break;
-    }
-}
-
-void Buyer_Menu()
-{
-    buyer_menuMessage();
-
-    int op;
-
-    printf("请输入您的操作：");
-    scanf("%d",&op);
-
-    while(op < 1 || op > 6)
-    {
-        failureMessage();
-        printf("请输入您的操作：");
-        scanf("%d",&op);
-    } 
-
-    switch (op)
-    {
-    case 1:Print_Products('U');break;    
-    case 2:Search_Product('U');break;
-    case 3:Buy_Product();break;
-    case 4:Search_OwnOrders('U', users[Now_User].id);break;
-    case 5:Print_ProductInfo();break;
-    case 6:User_Menu();break;
-    }
-}
-
-void User_Menu()
-{
-    user_menuMessage();
-
-    int op;
-
-    printf("请输入您的操作：");
-    scanf("%d", &op);
-
-    while(op < 1 || op > 4)
-    {
-        failureMessage();
-        printf("请输入您的操作：");
-        scanf("%d", &op);
-    }
-
-    choose(op);
-}
-
-
-
-void Seller_Menu(int Now_User)
-{
-    seller_menuMessage();
-
-    int op;
-
-    printf("请输入您的操作：");
-    scanf("%d", &op);
-
-    while( op < 1 || op >6)
-    {
-        failureMessage();
-        printf("请输入您的操作：");
-        scanf("%d", &op);
-    }
-    switch (op)
-    {
-    case 1:Add_Product(users[Now_User].id);break;    
-    case 2:Search_Product('S');break;
-    case 3://break;
-    case 4:Delete_Product(users[Now_User].id);break;
-    case 5:Search_OwnOrders('S', users[Now_User].id);break;
-    case 6:User_Menu();break;
-    }
-}
-
-
-void choose(int op)
-{
-    switch (op)
-    {
-    case 1:Main_Menu();break;
-    case 2:Buyer_Menu();break;
-    case 3:Seller_Menu(Now_User);break;
-    case 4:Info_Menu();break;
-    }
-}
-*/
-
-/*
-void Modify_Info()
-{
-    int op;
-    char password[MAX_PASSWORD_LENGTH];
-    char address[MAX_ADRESS_LENGTH];
-    char tel[MAX_TEL_LENGTH];
-    printf("请输入要修改的信息:1.修改密码 2.地址 3.联系方式 \n");
-    scanf("%d",&op);
-    switch(op)
-    {
-        case 1: 
-        {
-            printf("请输入密码: ");
-            scanf("%s",password);
-            strcpy(users[Now_User].password , password);
-            printf("修改成功！");
-            Info_Menu() ;
-            break;
-        }
-        case 2: 
-        {
-            printf("请输入地址: ");
-            scanf("%s",address); 
-            strcpy(users[Now_User].address , address);
-            printf("修改成功！");
-            Info_Menu() ;
-            break;
-        }
-        case 3: 
-        {
-            printf("请输入联系方式: ");
-            scanf("%s",tel); 
-            strcpy(users[Now_User].tel , tel);
-            printf("修改成功！");
-            Info_Menu() ;
-            break;
-        }
-        default: printf("无效操作，请重试！");Info_Menu() ; break;
-    }
-}
-*/
 
 /*
 void Buy_Product()
@@ -334,8 +168,6 @@ void Buy_Product()
         {
             printf("已取消购买！");Buyer_Menu();
         }
-           
     }
-    
 }
 */

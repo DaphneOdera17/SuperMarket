@@ -55,6 +55,7 @@ static const char* Info_MENU_TITLE = "\n\t\t+-+ Info Menu +-+";
 static const char* Admin_MENU_TITLE = "\n\t\t+-+ Admin Menu +-+";
 static const char* OPEN_ERROR = "\t\t*** 打开文件失败！ ***";
 static const char* SUCCESSFUL = "\t\t*** 操作成功！***";
+static const char* ERRO_FINDING_USER = "\t\t*** 未找到该用户！***";
 
 void welcomeMessage() 
 {
@@ -75,32 +76,16 @@ void exitMessage()
     printf("%s%s%s\n", FRONT_YELLOW, NEXTTIME, RESET);
 }
 
-void loginfailureMessage()
-{
-    printf("%s%s%s%s\n", BOLD, FRONT_RED, LOGINFAILURE, RESET);
-}
+void loginfailureMessage(){printf("%s%s%s%s\n", BOLD, FRONT_RED, LOGINFAILURE, RESET);}
 
-void loginsuccessMessage()
-{
-    printf("%s%s%s%s\n", BOLD, FRONT_BLUE, LOGINSUCCESS, RESET);
-}
+void loginsuccessMessage(){printf("%s%s%s%s\n", BOLD, FRONT_BLUE, LOGINSUCCESS, RESET);}
 
-void loadingMessage()
-{
-    printf("%s%s%s\n\n", BOLD, LOADING, RESET);
-}
+void loadingMessage(){printf("%s%s%s\n\n", BOLD, LOADING, RESET);}
 
-void open_ErrorMessage()
-{
-    printf("%s%s%s%s\n", BOLD, FRONT_RED , OPEN_ERROR , RESET);
-}
+void open_ErrorMessage(){printf("%s%s%s%s\n", BOLD, FRONT_RED , OPEN_ERROR , RESET);}
 
-void Print_UserInfo_Banner()
-{
-    printf("%s%s%s", BOLD, USER_INFO_BANNER, RESET);
-}
+void Print_UserInfo_Banner(){printf("%s%s%s", BOLD, USER_INFO_BANNER, RESET);}
 
-void successful()
-{
-    printf("%s%s%s\n", BOLD, SUCCESSFUL, RESET);
-}
+void successful(){printf("%s%s%s\n", BOLD, SUCCESSFUL, RESET);}
+
+void error_finding_user(){printf("%s%s%s\n", FRONT_RED, ERRO_FINDING_USER, RESET);}

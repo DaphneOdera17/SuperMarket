@@ -31,10 +31,6 @@ void Recharge();
 
 int Add_User(User* tmp);
 
-void Delete_User(char *name);
-
-//void getUserName(char* username);
-
-//void getPassword(char* password);
+int Delete_User(char *name);
 
 #endif

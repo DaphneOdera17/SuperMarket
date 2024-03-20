@@ -19,8 +19,6 @@ typedef struct
     // 2 为已售出
 }Product;
 
-
-
 void Load_Products();
 
 void Print_Products(char type);

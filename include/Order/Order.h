@@ -17,10 +17,5 @@ void Load_Order();
 
 void Out_Order();
 
-void Print_Orders(char type);
-
-void Add_Order(int idx, char* user);
-
-void Search_OwnOrders(char type, char *id);
 
 #endif

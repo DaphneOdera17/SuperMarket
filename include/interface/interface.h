@@ -5,11 +5,12 @@
 #include "Order/Order.h"
 #include "Product/Product.h"
 #include "Menu/menu.h"
-#include "Admin/Admin.h"
 #include "tools/color.h"
 #include "tools/hint.h"
 #include "tools/info.h"
 
 typedef void (*HANDLE)(void); // 定义函数指针
+
+extern int Now_User;
 
 #endif

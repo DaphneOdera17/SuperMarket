@@ -54,7 +54,7 @@ void User_Login()
     int flag = check(username, password); // 0 表示未查找到用户 1 表示查找到对应的用户
     if(flag == -1)
     {
-
+        error_finding_user();
     }
 }
 
@@ -94,7 +94,7 @@ void User_SignUp()
 void Main_Interface()
 {
     int op = menu(MAIN);
-    while(op != optionNumber[MAIN])
+    while(op != optionNumber[MAIN]) // 操作不为退出时
     {
         loadingMessage();
         handler[op - 1]();
