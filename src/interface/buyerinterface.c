@@ -3,6 +3,51 @@
 #include <string.h>
 #include <stdlib.h>
 
+//1 2 4 5
+static HANDLE handler[] = {PRINT_Goods , Search_good , Buy_Good , PRINT_OwnOrder ,};
+
+
+void PRINT_Goods()
+{
+    Print_Products();
+}
+
+void SEARCH_Good()
+{
+    char good[MAX_NAME_LENGTH];
+    scanf("%s",good);
+    int idx = SearchGood(good);
+    if(idx == -1)
+    {
+        error_finging_good();
+        failureMessage();
+    }
+    else
+    {
+        Product *Good = Get_Good(idx);
+        Info_Produt(Good);
+    }
+}
+
+void Search_good()
+{
+    printf("请输入您要查找的商品名称或ID: ");
+    SEARCH_Good();
+}
+
+void Buy_Good()
+{
+    printf("请输入您要购买的商品名称或ID: ");
+    SEARCH_Good();
+}
+
+void PRINT_OwnOrder()
+{
+    User *tmp = Get_User(Now_User);
+    Print_BuyerOwnOrder(tmp->id);
+}
+
+/*
 void Buy()
 {
     char ch;
@@ -69,3 +114,4 @@ void Buy()
            
     }
 }
+*/

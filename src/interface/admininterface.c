@@ -62,5 +62,5 @@ void DELETE_Good()
     char good[MAX_NAME_LENGTH];
     printf("请输入您要查找的商品名称或ID: ");
     scanf("%s",good);
-    Delete_Product(good, "Admin");
+    Delete_Product(good);
 }
