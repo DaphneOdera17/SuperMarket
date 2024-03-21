@@ -47,6 +47,8 @@ int SearchGood(char *s)
 void Add_Product(Product *tmp)
 {
     Generate_ID(tmp->id, 'G');
+    Get_Time(tmp->SellTime);
+    tmp->state = 1;
     goods[Total_ProductsNumber ++] = *tmp;
     /*
     char name[MAX_NAME_LENGTH];
@@ -117,6 +119,7 @@ int Delete_Product(char *s, char *name)
     */
 }
 
+/*
 void Search_Product(char type)
 {
 //可以按照商品名称商品名称查找商品
@@ -149,6 +152,6 @@ void Search_Product(char type)
             case 1: printf("商品状态： 在售中 "); break;
             case 2: printf("商品状态： 已售空 "); break;
         }
-        */
     }
 }
+*/

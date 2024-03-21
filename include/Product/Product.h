@@ -21,21 +21,9 @@ typedef struct
 
 void Load_Products();
 
-void Print_Products(char type);
+void Print_Products();
 
 void Out_Products();
-
-void Out_Order();
-
-void Load_Order();
-
-void Printf_Order();
-
-void Add_Product(char * Now_User);
-
-void Delete_Product(char *Now_User);
-
-void Search_Product(char type);
 
 int search(char *s);
 

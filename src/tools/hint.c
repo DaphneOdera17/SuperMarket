@@ -56,6 +56,7 @@ static const char* Admin_MENU_TITLE = "\n\t\t+-+ Admin Menu +-+";
 static const char* OPEN_ERROR = "\t\t*** 打开文件失败！ ***";
 static const char* SUCCESSFUL = "\t\t*** 操作成功！***";
 static const char* ERRO_FINDING_USER = "\t\t*** 未找到该用户！***";
+static const char* ERRO_FINDING_GOOD = "\t\t*** 未找到该商品！***";
 
 void welcomeMessage() 
 {
@@ -89,3 +90,5 @@ void Print_UserInfo_Banner(){printf("%s%s%s", BOLD, USER_INFO_BANNER, RESET);}
 void successful(){printf("%s%s%s\n", BOLD, SUCCESSFUL, RESET);}
 
 void error_finding_user(){printf("%s%s%s\n", FRONT_RED, ERRO_FINDING_USER, RESET);}
+
+void error_finging_good(){printf("%s%s%s\n",FRONT_RED, ERRO_FINDING_GOOD, RESET);}
