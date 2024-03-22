@@ -4,6 +4,18 @@
 
 static HANDLE handler[] = {ADD_Good , PRINT_OwnGoods, DELETE_Good ,PRINT_OwnOrder };
 
+void SELLER_Interface() {
+    successMessage();
+    int op = menu(USER);
+    while (op != optionNumber[USER]) {
+        loadingMessage();
+        handler[op - 1]();
+        op = menu(USER);
+    }
+    loadingMessage();
+    successMessage();
+}
+
 void ADD_Good()
 {
     Product *tmp = (Product *)malloc(sizeof(Product));

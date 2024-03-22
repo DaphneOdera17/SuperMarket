@@ -4,6 +4,18 @@
 
 static HANDLE handler[] = {PRINT_Goods, Search_Good, PRINT_Orders , PRINT_users , DELETE_User , DELETE_Good};
 
+void ADMIN_Interface() {
+    successMessage();
+    int op = menu(USER);
+    while (op != optionNumber[USER]) {
+        loadingMessage();
+        handler[op - 1]();
+        op = menu(USER);
+    }
+    loadingMessage();
+    successMessage();
+}
+
 void DELETE_User()
 {
     char name[MAX_USERNAME_LENGTH];

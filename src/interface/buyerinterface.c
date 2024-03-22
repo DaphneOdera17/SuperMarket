@@ -6,6 +6,17 @@
 //1 2 4 5
 static HANDLE handler[] = {PRINT_Goods , Search_good , Buy_Good , PRINT_OwnOrder ,};
 
+void BUYER_Interface() {
+    successMessage();
+    int op = menu(USER);
+    while (op != optionNumber[USER]) {
+        loadingMessage();
+        handler[op - 1]();
+        op = menu(USER);
+    }
+    loadingMessage();
+    successMessage();
+}
 
 void PRINT_Goods()
 {
