@@ -29,4 +29,11 @@ void open_ErrorMessage();
 
 void Print_UserInfo_Banner();
 
+void successMessage();
+
+void loadingSuccess();
+
+void error_finding_user();
+void error_finding_good();
+
 #endif

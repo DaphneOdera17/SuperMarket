@@ -19,14 +19,20 @@ typedef struct
     // 2 为已售出
 }Product;
 
+Product* Get_Good(int idx);
+
 void Load_Products();
-
-void Print_Products();
-
 void Out_Products();
 
-int search(char *s);
+void Print_Products();
+void Print_OwnProduct(char *id);
+void Product_Info(int idx);
 
-Product* Get_Good(int idx);
+int SearchGood(char *s);
+
+void Buy_Good_Confirm(int idx);
+
+void Add_Product(Product *tmp);
+int Delete_Product(char *s);
 
 #endif

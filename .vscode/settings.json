@@ -4,7 +4,11 @@
     "admin.h": "c",
     "color.h": "c",
     "product.h": "c",
-    "interface.h": "c"
+    "interface.h": "c",
+    "config.h": "c",
+    "user.h": "c",
+    "order.h": "c",
+    "unistd.h": "c"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",

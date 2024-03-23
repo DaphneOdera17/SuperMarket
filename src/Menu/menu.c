@@ -25,7 +25,7 @@ static const char *menuPrompts[MENU_NUMBER] = {"\
 +================+============+===============+================+============+============+========+ \n", \
 "\
 +==============+========+=========+===========+\n\
-| 1.修改密码 | 2.修改联系方式 | 3.修改地址 | 4.返回 |\
+| 1.修改密码 | 2.修改联系方式 | 3.修改地址 | 4.返回 |\n\
 +==============+========+=========+===========+\n", \
 "\
 +============+============+========+==================+ \n\
@@ -36,9 +36,7 @@ static const char *menuPrompts[MENU_NUMBER] = {"\
 | 1.名称 | 2.价格 | 3.描述 | 4.返回 | \n\
 +==========+============+=========+=========+ \n"};
 
-static const char *menuName[MENU_NUMBER] = {"Main", "User", "Seller", "Buyer", "Admin", "Products", "Modify", "Info"};
-
-// {MAIN, USER, SELLER, BUYER, ADMIN, PRODUCTS, MODIFY, INFO} Menu;
+static const char *menuName[MENU_NUMBER] = {"Main", "User", "Seller", "Buyer", "Admin", "Modify", "Info", "Products"};
 
 static void PromptMessage(Menu type){
     printf("\t\t\t%s%s Menu%s\n", REVERSE, menuName[type], RESET);

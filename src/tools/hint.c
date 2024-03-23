@@ -46,6 +46,7 @@ static const char* LOGINSUCCESS = "\t\t*** 登陆成功！***";
 static const char* DESIGNERS = "Designer: Zhang Xinyi, Huang Xueqin.";
 static const char* NEXTTIME = "\t\t*** 欢迎下次再来！***";
 static const char* LOADING = "\t\t***** 加载中 *****";
+static const char* LOADINGSUCCESS = "\t\t*** 加载成功! ***";
 static const char* LOGINOUT = "\t\t*** 注销成功！***";
 static const char* MAIN_MENU_TITLE = "\n\t\t+-+ Main Menu +-+";
 static const char* User_MENU_TITLE = "\n\t\t+-+ User Menu +-+";
@@ -65,10 +66,7 @@ void welcomeMessage()
     printf("%s%s%s\n\n", FRONT_PURPLR, DESIGNERS, RESET);
 }
 
-void failureMessage()
-{
-    printf("%s%s%s\n", FRONT_RED, FAILURE, RESET);
-}
+void failureMessage() {printf("%s%s%s\n", FRONT_RED, FAILURE, RESET);}
 
 void exitMessage()
 {
@@ -83,12 +81,14 @@ void loginsuccessMessage(){printf("%s%s%s%s\n", BOLD, FRONT_BLUE, LOGINSUCCESS, 
 
 void loadingMessage(){printf("%s%s%s\n\n", BOLD, LOADING, RESET);}
 
+void loadingSuccess(){printf("%s%s%s%s\n\n", BOLD, FRONT_RED, LOADINGSUCCESS, RESET);}
+
 void open_ErrorMessage(){printf("%s%s%s%s\n", BOLD, FRONT_RED , OPEN_ERROR , RESET);}
 
 void Print_UserInfo_Banner(){printf("%s%s%s", BOLD, USER_INFO_BANNER, RESET);}
 
-void successful(){printf("%s%s%s\n", BOLD, SUCCESSFUL, RESET);}
+void successMessage(){printf("%s%s%s\n", BOLD, SUCCESSFUL, RESET);}
 
 void error_finding_user(){printf("%s%s%s\n", FRONT_RED, ERRO_FINDING_USER, RESET);}
 
-void error_finging_good(){printf("%s%s%s\n",FRONT_RED, ERRO_FINDING_GOOD, RESET);}
+void error_finding_good(){printf("%s%s%s\n",FRONT_RED, ERRO_FINDING_GOOD, RESET);}

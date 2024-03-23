@@ -56,12 +56,16 @@ void User_Login()
     {
         error_finding_user();
     }
-    else
+    else if(check(username, password))
     {
         Now_User = SearchUserName(username);
+        loginsuccessMessage();
+        USER_Interface();
     }
-    
-    
+    else
+    {
+        loginfailureMessage();
+    }
 }
 
 void Admin_Login()
@@ -74,8 +78,10 @@ void Admin_Login()
     if(strcmp(name, ADMIN_NAME) == 0 && strcmp(password, ADMIN_PASSWORD) == 0)
     {
         loginsuccessMessage();
-        
+        ADMIN_Interface();
     }
+    else
+        loginfailureMessage();
 }
 
 void User_SignUp()
@@ -93,11 +99,11 @@ void User_SignUp()
     if(Add_User(tmp) == -1)
         failureMessage();
     else
-        successful();
+        successMessage();
     free(tmp);
 }
 
-void Main_Interface()
+void MAIN_Interface()
 {
     int op = menu(MAIN);
     while(op != optionNumber[MAIN]) // 操作不为退出时
