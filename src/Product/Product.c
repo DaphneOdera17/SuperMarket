@@ -46,7 +46,47 @@ void Info_Product(Product *Good)
     printf("卖家id: %s\n", Good->SellID);
     printf("商品上架时间: %s\n", Good->SellTime);
     printf("商品数量: %s\n", Good->cnt);
-    printf("商品状态: %s\n", Good->state);    
+    switch(Good->state)
+    {
+        case 0: printf("商品状态： 已下架 \n"); break;
+        case 1: printf("商品状态： 在售中 \n"); break;
+        case 2: printf("商品状态： 已售空 \n"); break;
+    }  
+}
+
+void Buy_Good_Confirm(int idx)
+{
+    char ch[5];
+    scanf("%s",ch);
+    if(strcmp(ch , "Yes") == 0)
+    {
+        User *tmp = Get_User(Now_User);
+        if(tmp->res < goods[idx].price)
+        {
+            printf("余额不足，请前往个人信息管理充值后购买！");
+            // User_Menu();
+        }
+        else if(goods[idx].state == 0 || goods[idx].state == 2)
+        {
+            printf("该商品已下架或已售空，请选择其他商品购买！");
+            // Buyer_Menu();
+        }
+        else
+        {
+            tmp->res -= goods[idx].price; 
+            Out_User();
+            printf("购买成功！\n");
+            Add_Order(idx, tmp->id);//购买成功后添加订单到文件
+            printf("当前账户余额为： %.1f",tmp->res);
+            free(tmp);
+            // Buyer_Menu();
+            
+        }
+    }
+    else
+    {
+        printf("已取消购买！");// Buyer_Menu();
+    }
 }
 
 void Out_Products()

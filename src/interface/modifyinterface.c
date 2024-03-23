@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-static HANDLE handler[] = {Modify_name, Modify_pwd, Modify_tel};
+static HANDLE handler[] = {Modify_Name, Modify_Pwd, Modify_Tel};
 
 void MODIFY_Interface() {
     successMessage();
@@ -15,6 +15,30 @@ void MODIFY_Interface() {
     loadingMessage();
     successMessage();
 }
+
+void Modify_Name()
+{
+    User *tmp = Get_User(Now_User);
+    printf("请输入修改后的名字: ");
+    scanf("%s", tmp->name);
+    free(tmp);
+}
+
+void Modify_Pwd()
+{
+    User *tmp = Get_User(Now_User);
+    printf("请输入密码：");
+    scanf("%s", tmp->password);
+    free(tmp);
+}
+void Modify_Tel()
+{
+    User *tmp = Get_User(Now_User);
+    printf("请输入联系方式：");
+    scanf("%s", tmp->tel);
+    free(tmp);
+}
+
 
 /*
 void MODIFY_GoodInfo()

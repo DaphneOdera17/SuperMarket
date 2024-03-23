@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 //1 2 4 5
-static HANDLE handler[] = {PRINT_Goods , Search_good , Buy_Good , PRINT_OwnOrder ,};
+static HANDLE handler[] = {PRINT_Goods , Search_good , Buy_Good , PRINT_OwnOrder};
 
 void BUYER_Interface() {
     successMessage();
@@ -23,7 +23,7 @@ void PRINT_Goods()
     Print_Products();
 }
 
-void SEARCH_Good()
+int SEARCH_Good()
 {
     char good[MAX_NAME_LENGTH];
     scanf("%s",good);
@@ -37,6 +37,7 @@ void SEARCH_Good()
     {
         Product *Good = Get_Good(idx);
         Info_Produt(Good);
+        return idx;
     }
 }
 
@@ -48,8 +49,11 @@ void Search_good()
 
 void Buy_Good()
 {
+    
     printf("请输入您要购买的商品名称或ID: ");
-    SEARCH_Good();
+    int idx = SEARCH_Good();
+    printf("您确定购买此商品吗?请输入Yes/No\n");//Y表示确定购买 N表示取消购买
+    Buy_Good_Confirm(idx);
 }
 
 void PRINT_OwnOrder()

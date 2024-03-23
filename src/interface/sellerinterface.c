@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-static HANDLE handler[] = {ADD_Good , PRINT_OwnGoods, DELETE_Good ,PRINT_OwnOrder };
+static HANDLE handler[] = {ADD_Good , PRINT_OwnGoods, DELETE_Good , PRINT_OwnOrder };
 
 void SELLER_Interface() {
     successMessage();

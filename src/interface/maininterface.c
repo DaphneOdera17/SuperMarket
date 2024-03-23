@@ -6,7 +6,6 @@
 
 static HANDLE handler[] = {User_Login, User_SignUp, Admin_Login};
 
-
 void getName(char* name)
 {
     printf("请输入用户名：");
@@ -56,6 +55,10 @@ void User_Login()
     if(flag == -1)
     {
         error_finding_user();
+    }
+    else
+    {
+        Now_User = SearchUserName(username);
     }
     
     

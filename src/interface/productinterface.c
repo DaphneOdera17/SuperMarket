@@ -3,7 +3,7 @@
 
 static HANDLE handler[] = {Modify_Name, Modify_Price, Modify_Des};
 
-// int Now_Good = -1;
+int Now_Good = -1;
 
 void PRODUCT_Interface()
 {
@@ -20,15 +20,27 @@ void PRODUCT_Interface()
 
 void Modify_Name() 
 {
+    Product *tmp = Get_User(Now_Good);
+    printf("请输入商品名字：");
+    scanf("%s", tmp->name);
+    free(tmp);
     
 }
 
 void Modify_Price()
 {
+    Product *tmp = Get_User(Now_Good);
+    printf("请输入商品价格：");
+    scanf("%s", tmp->name);
+    free(tmp);
 
 }
 
 void Modify_Des()
 {
+    Product *tmp = Get_User(Now_Good);
+    printf("请输入商品描述：");
+    scanf("%s", tmp->name);
+    free(tmp);
     
 }
