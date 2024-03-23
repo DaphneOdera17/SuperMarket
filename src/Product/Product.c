@@ -27,6 +27,28 @@ void Print_Products()
             goods[i].SellID, goods[i].SellTime, goods[i].cnt, goods[i].state);
 }
 
+void Print_OwnProduct(char *id)
+{
+    for(int i = 0; i < Total_ProductsNumber; i ++)
+    {
+        if(strcmp(goods[i].SellID, id) == 0)
+            printf("%10s %10s %.1f %10s %10s %10s %d %d \n", goods[i].id, goods[i].name, goods[i].price, goods[i].discribe, \
+            goods[i].SellID, goods[i].SellTime, goods[i].cnt, goods[i].state);
+
+    }     
+}
+
+void Info_Product(Product *Good)
+{
+    printf("商品id: %s\n", Good->id);
+    printf("商品名称: %s\n", Good->name);
+    printf("商品价格: %s\n", Good->price);
+    printf("卖家id: %s\n", Good->SellID);
+    printf("商品上架时间: %s\n", Good->SellTime);
+    printf("商品数量: %s\n", Good->cnt);
+    printf("商品状态: %s\n", Good->state);    
+}
+
 void Out_Products()
 {
     FILE *ptr = fopen(FILEPATH, "w");
@@ -44,9 +66,12 @@ int SearchGood(char *s)
     return -1;
 }
 
+
 void Add_Product(Product *tmp)
 {
     Generate_ID(tmp->id, 'G');
+    Get_Time(tmp->SellTime);
+    tmp->state = 1;
     goods[Total_ProductsNumber ++] = *tmp;
     /*
     char name[MAX_NAME_LENGTH];
@@ -71,11 +96,13 @@ void Add_Product(Product *tmp)
     */
 }
 
-int Delete_Product(char *s, char *name)
+int Delete_Product(char *s)
 {
     int idx = SearchGood(s);
-    if(idx == -1 && strcmp(goods[idx].name, name) != 0 && strcmp(name, "Admin") != 0)
+    // 未找到商品或者名字bu匹配且不是管理与 管理员可以随便山
+    if(idx == -1)
         return -1;
+    
     goods[idx].state = 0;
     return 0;
     /*
@@ -117,6 +144,7 @@ int Delete_Product(char *s, char *name)
     */
 }
 
+/*
 void Search_Product(char type)
 {
 //可以按照商品名称商品名称查找商品
@@ -149,6 +177,6 @@ void Search_Product(char type)
             case 1: printf("商品状态： 在售中 "); break;
             case 2: printf("商品状态： 已售空 "); break;
         }
-        */
     }
 }
+*/

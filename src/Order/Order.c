@@ -47,6 +47,24 @@ void Add_Order(Order *tmp)
     */
 }
 
+void Print_SellerOwnOrder(char *id)
+{
+    for(int i = 0; i < Total_OrdersNumber; i ++)
+    {
+        if(strcmp(orders[i].seller_id, id) == 0)
+            printf("购买用户：%s 商品订单：%s\n", id , orders[i].id );
+    }
+}
+
+void Print_BuyerOwnOrder(char *id)
+{
+    for(int i = 0; i < Total_OrdersNumber; i ++)
+    {
+        if(strcmp(orders[i].buyer_id, id) == 0)
+            printf("商品订单：%s 商品卖家：%s \n", orders[i].id , orders[i].seller_id );
+    }
+}
+
 /*
 void Search_OwnOrders(char type, char *id)
 {
@@ -68,6 +86,7 @@ void Search_OwnOrders(char type, char *id)
         Buyer_Menu();
     }
     if(type =='S')
+    //类似这样
     {
         printf("您的历史订单为:\n");
 

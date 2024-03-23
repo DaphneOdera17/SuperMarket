@@ -13,4 +13,12 @@ typedef void (*HANDLE)(void); // 定义函数指针
 
 extern int Now_User;
 
+void USER_Interface();
+void BUYER_Interface();
+void SELLER_Interface();
+void INFO_Interface();
+void ADMIN_Interface();
+void PRODUCT_Interface();
+void MODIFY_Interface();
+
 #endif

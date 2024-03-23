@@ -6,6 +6,7 @@
 
 static HANDLE handler[] = {User_Login, User_SignUp, Admin_Login};
 
+
 void getName(char* name)
 {
     printf("请输入用户名：");
@@ -56,6 +57,8 @@ void User_Login()
     {
         error_finding_user();
     }
+    
+    
 }
 
 void Admin_Login()
@@ -79,7 +82,7 @@ void User_SignUp()
     scanf("%s", tmp->name);
     printf("请输入您的密码： ");
     scanf("%s", tmp->password);
-    printf("请输入您的来联系方式： ");
+    printf("请输入您的联系方式： ");
     scanf("%s", tmp->tel);
     printf("请输入您的地址： ");
     scanf("%s", tmp->address);
@@ -97,9 +100,9 @@ void Main_Interface()
     while(op != optionNumber[MAIN]) // 操作不为退出时
     {
         loadingMessage();
-        handler[op - 1]();
+        handler[op - 1](); // () 调用
+        // User_Login
         op = menu(MAIN);
     }
     loadingMessage();
-
 }
