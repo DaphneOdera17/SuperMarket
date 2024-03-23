@@ -27,18 +27,18 @@ void Out_Order()
 
 void Print_Orders()
 {
-    for(int i = 0; i < Total_OrdersNumber ; i++)
-        printf("%10s%10s%.1f%10s%10s%10s\n",orders[i].id , orders[i].good_id , orders[i].price , \
-            orders[i].date , orders[i].seller_id , orders[i].buyer_id);
+    Print_OrderInfo_Banner();
+    for(int i = 0; i < Total_OrdersNumber ; i++){
+        printf("|%-10s |%-10s |%-5.1f |%-10s |%-10s |%-10s |\n",orders[i].id , orders[i].good_id , orders[i].price , \
+            orders[i].date, orders[i].seller_id , orders[i].buyer_id);
+        printf("%s--------------------------------------------------------------------%s\n", BOLD, RESET);}
 }
 
 void Print_SellerOwnOrder(char *id)
 {
-    for(int i = 0; i < Total_OrdersNumber; i ++)
-    {
+    for(int i = 0; i < Total_OrdersNumber; i ++){
         if(strcmp(orders[i].seller_id, id) == 0)
-            printf("购买用户：%s 商品订单：%s\n", id , orders[i].id );
-    }
+            printf("购买用户：%s 商品订单：%s\n", id , orders[i].id );}
 }
 
 void Print_BuyerOwnOrder(char *id)

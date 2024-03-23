@@ -25,11 +25,10 @@ void MAIN_Interface();
 
 void ADMIN_DELETE_Good();
 void DELETE_User();
-void Search_Good();
 void DELETE_Good();
 
 int SEARCH_Good();
-void Search_good();
+void Search_Good();
 void Buy_Good();
 
 void RECHARGE();
@@ -52,5 +51,7 @@ void ADD_Good();
 void SELLER_OwnOrder();
 void SELLER_OwnGoods();
 void BUYER_OwnOrder();
+void GOOD_Detail();
+void MODIFY_Good();
 
 #endif

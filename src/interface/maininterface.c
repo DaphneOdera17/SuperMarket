@@ -70,6 +70,7 @@ void User_Login()
 
 void Admin_Login()
 {
+    getchar();
     char name[MAX_NAME_LENGTH];
     char password[MAX_PASSWORD_LENGTH];
     getName(name);
@@ -106,11 +107,10 @@ void User_SignUp()
 void MAIN_Interface()
 {
     int op = menu(MAIN);
-    while(op != optionNumber[MAIN]) // 操作不为退出时
+    while(op != optionNumber[MAIN]) 
     {
         loadingMessage();
-        handler[op - 1](); // () 调用
-        // User_Login
+        handler[op - 1](); 
         op = menu(MAIN);
     }
     loadingMessage();

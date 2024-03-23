@@ -50,9 +50,9 @@ void Print_UserInfo()
     Print_UserInfo_Banner();
     for(int i = 0; i < Total_UserNumber; i ++)
     {
-        printf("|%-6s |%-7s |%-15s |%-15s |%-15s |%-9.1lf |\n", \
+        printf("|%-10s |%-10s |%-10s |%-10s |%-15s\t|%-10.1lf |\n", \
             users[i].id, users[i].name, users[i].password, users[i].tel, users[i].address, users[i].res);
-        printf("------------------------------------------------------------------------\n");
+        printf("%s-----------------------------------------------------------------------------%s\n", BOLD, RESET);
     }
 }
 
@@ -96,6 +96,7 @@ int Delete_User(char *name)
         return -1;
     for(int i = idx; i < Total_UserNumber - 1; i ++)
         users[i] = users[i + 1];
+    Total_UserNumber --;
     return 0;
 }
 

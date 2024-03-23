@@ -28,6 +28,9 @@ void info_menuMessage();
 void open_ErrorMessage();
 
 void Print_UserInfo_Banner();
+void Print_GoodInfo_Banner();
+void Print_SingleGood_Banner();
+void Print_OrderInfo_Banner();
 
 void successMessage();
 
@@ -35,5 +38,7 @@ void loadingSuccess();
 
 void error_finding_user();
 void error_finding_good();
+
+void FailToAddGood();
 
 #endif

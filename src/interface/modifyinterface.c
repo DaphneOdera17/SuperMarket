@@ -5,15 +5,12 @@
 static HANDLE handler[] = {MODIFY_UserName, MODIFY_UserPwd, MODIFY_UserTel};
 
 void MODIFY_Interface() {
-    successMessage();
     int op = menu(MODIFY);
     while (op != optionNumber[MODIFY]) {
         loadingMessage();
         handler[op - 1]();
         op = menu(MODIFY);
     }
-    loadingMessage();
-    successMessage();
 }
 
 void MODIFY_UserName()

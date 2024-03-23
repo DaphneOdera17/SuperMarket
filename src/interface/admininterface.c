@@ -12,8 +12,6 @@ void ADMIN_Interface() {
         handler[op - 1]();
         op = menu(ADMIN);
     }
-    loadingMessage();
-    successMessage();
 }
 
 void DELETE_User()
@@ -28,21 +26,6 @@ void DELETE_User()
     }
     else
         successMessage();
-}
-
-void Search_Good()
-{
-    char good[MAX_NAME_LENGTH];
-    printf("请输入您要查找的商品名称或ID: ");
-    scanf("%s",good);
-    int idx = SearchGood(good);
-    if(idx == -1)
-    {
-        error_finding_good();
-        failureMessage();
-    }
-    else
-        Product_Info(idx);
 }
 
 void ADMIN_DELETE_Good()

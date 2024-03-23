@@ -8,14 +8,12 @@ int Now_Good = -1;
 void PRODUCT_Interface()
 {
     int op = menu(PRODUCTS);
-    while(op != optionNumber[PRODUCTS]) // 操作不为退出时
+    while(op != optionNumber[PRODUCTS]) 
     {
         loadingMessage();
-        handler[op - 1](); // () 调用
-        // User_Login
+        handler[op - 1](); 
         op = menu(PRODUCTS);
     }
-    loadingMessage();
 }
 
 void MODIFY_GoodName() 

@@ -20,10 +20,12 @@ typedef struct
 }Product;
 
 Product* Get_Good(int idx);
+char *Get_State(int state);
 
 void Load_Products();
 void Out_Products();
 
+void Print_Product(int idx);
 void Print_Products();
 void Print_OwnProduct(char *id);
 void Product_Info(int idx);

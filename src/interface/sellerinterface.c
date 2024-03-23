@@ -2,18 +2,15 @@
 #include <stdio.h>
 #include <string.h>
 
-static HANDLE handler[] = {ADD_Good, SELLER_OwnGoods, PRODUCT_Interface, DELETE_Good , SELLER_OwnOrder};
+static HANDLE handler[] = {ADD_Good, SELLER_OwnGoods, MODIFY_Good, DELETE_Good , SELLER_OwnOrder};
 
 void SELLER_Interface() {
-    successMessage();
     int op = menu(SELLER);
     while (op != optionNumber[SELLER]) {
         loadingMessage();
         handler[op - 1]();
         op = menu(SELLER);
     }
-    loadingMessage();
-    successMessage();
 }
 
 void ADD_Good()
@@ -29,8 +26,11 @@ void ADD_Good()
     scanf("%d", &tmp->cnt);
     strcpy(tmp->SellID, Get_User(Now_User)->id);
     Add_Product(tmp);
-    if(SearchGood(tmp->name) == -1)
+    if(SearchGood(tmp->name) != -1)
+    {
         failureMessage();
+        FailToAddGood();
+    }
     else
         successMessage();
     free(tmp);
@@ -62,6 +62,8 @@ void DELETE_Good()
 
 void MODIFY_Good()
 {
-    
+    printf("请输入您要修改的商品名称或ID: ");
+    SEARCH_Good();
+    PRODUCT_Interface();
 }
 

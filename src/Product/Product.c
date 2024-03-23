@@ -27,6 +27,14 @@ void Out_Products()
     fclose(ptr);
 }
 
+char *Get_State(int state)
+{   
+    switch(state){
+        case 0: return "已下架"; break;
+        case 1: return "在售中"; break;
+        case 2: return "已售空"; break;}
+}
+
 int SearchGood(char *s)
 {
     for(int i = 0 ; i < Total_ProductsNumber ; i++)
@@ -35,11 +43,21 @@ int SearchGood(char *s)
     return -1;
 }
 
+void Print_Product(int idx)
+{
+    Print_SingleGood_Banner();
+    printf("|%-7s\t|%-15s\t|%-5.1f\t|%-10s|%-4d|%s%s%-11s%s|\n", goods[idx].id, goods[idx].name, goods[idx].price, goods[idx].SellTime, goods[idx].cnt, BOLD, FRONT_RED, Get_State(goods[idx].state), RESET);
+}
+
 void Print_Products()
 {
+    Print_GoodInfo_Banner();
     for(int i = 0; i < Total_ProductsNumber; i ++)
-        printf("%10s %10s %.1f %10s %10s %10s %d %d \n", goods[i].id, goods[i].name, goods[i].price, goods[i].discribe, \
-            goods[i].SellID, goods[i].SellTime, goods[i].cnt, goods[i].state);
+    {
+        printf("|%-7s\t|%-15s\t|%-5.1f\t|%-15s\t|%-10s|%-10s|%-4d|%s%s%-11s%s|\n", goods[i].id, goods[i].name, goods[i].price, goods[i].discribe, \
+            goods[i].SellID, goods[i].SellTime, goods[i].cnt, BOLD, FRONT_RED, Get_State(goods[i].state), RESET);
+        printf("%s---------------------------------------------------------------------------------------------%s\n", BOLD, RESET);
+    }
 }
 
 void Product_Info(int idx)
@@ -51,22 +69,19 @@ void Product_Info(int idx)
     printf("卖家id: %s\n", Good->SellID);
     printf("商品上架时间: %s\n", Good->SellTime);
     printf("商品数量: %d\n", Good->cnt);
-    switch(Good->state)
-    {
-        case 0: printf("商品状态： 已下架 \n"); break;
-        case 1: printf("商品状态： 在售中 \n"); break;
-        case 2: printf("商品状态： 已售空 \n"); break;
-    }  
+    printf("商品状态: %s%s%s%s", BOLD, FRONT_RED, Get_State(Good->state), RESET);
 }
 
 void Print_OwnProduct(char *id)
 {
+    Print_GoodInfo_Banner();
     for(int i = 0; i < Total_ProductsNumber; i ++)
     {
         if(strcmp(goods[i].SellID, id) == 0)
-            printf("%10s %10s %.1f %10s %10s %10s %d %d \n", goods[i].id, goods[i].name, goods[i].price, goods[i].discribe, \
-            goods[i].SellID, goods[i].SellTime, goods[i].cnt, goods[i].state);
-    }     
+            printf("|%-7s\t|%-15s\t|%-5.1f\t|%-15s\t|%-10s|%-10s|%-4d|%s%s%-11s%s|\n", goods[i].id, goods[i].name, goods[i].price, goods[i].discribe, \
+            goods[i].SellID, goods[i].SellTime, goods[i].cnt, BOLD, FRONT_RED, Get_State(goods[i].state), RESET);
+    }
+    printf("%s---------------------------------------------------------------------------------------------%s\n", BOLD, RESET);
 }
 
 void Add_Product(Product *tmp)

@@ -3,19 +3,15 @@
 #include <string.h>
 #include <stdlib.h>
 
-//1 2 4 5
-static HANDLE handler[] = {Print_Products, Search_good , Buy_Good , BUYER_OwnOrder};
+static HANDLE handler[] = {Print_Products, Search_Good , Buy_Good , BUYER_OwnOrder, GOOD_Detail};
 
 void BUYER_Interface() {
-    successMessage();
     int op = menu(BUYER);
     while (op != optionNumber[BUYER]) {
         loadingMessage();
         handler[op - 1]();
         op = menu(BUYER);
     }
-    loadingMessage();
-    successMessage();
 }
 
 int SEARCH_Good()
@@ -27,21 +23,23 @@ int SEARCH_Good()
     {
         error_finding_good();
         failureMessage();
+        return -1;
     }
     else
-        Product_Info(idx);
-    return idx;
+        return idx;
 }
 
-void Search_good()
+void Search_Good()
 {
     printf("请输入您要查找的商品名称或ID: ");
-    SEARCH_Good();
+    int idx = SEARCH_Good();
+    puts("");
+    if(idx != -1)
+        Print_Product(idx);
 }
 
 void Buy_Good()
 {
-    
     printf("请输入您要购买的商品名称或ID: ");
     int idx = SEARCH_Good();
     printf("您确定购买此商品吗?请输入Yes/No\n");//Y表示确定购买 N表示取消购买
@@ -52,4 +50,12 @@ void BUYER_OwnOrder()
 {
     User *tmp = Get_User(Now_User);
     Print_BuyerOwnOrder(tmp->id);
+}
+
+void GOOD_Detail()
+{
+    printf("请输入您要查找的商品名称或ID: ");
+    int idx = SEARCH_Good();
+    if(idx != -1)
+        Product_Info(idx);
 }
