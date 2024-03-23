@@ -12,10 +12,13 @@ typedef struct
     char buyer_id[MAX_ID_LENGTH];
 }Order;
 
-
 void Load_Order();
-
 void Out_Order();
 
+void Print_Orders();
+void Print_SellerOwnOrder(char *id);
+void Print_BuyerOwnOrder(char *id);
+
+void Add_Order(Order *tmp);
 
 #endif

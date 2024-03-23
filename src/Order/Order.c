@@ -4,17 +4,8 @@
 
 static const char* FILEPATH = "src/Data/Orders.txt";
 static int Total_OrdersNumber = 0; 
-extern int Now_User ;
+extern int Now_User;
 static Order orders[MAX_ORDER_NUMBER];
-
-void Out_Order()
-{
-    FILE *ptr = fopen(FILEPATH,"w");
-    for (int i = 0; i < Total_OrdersNumber; i++)
-        fprintf(ptr,"%s %s %.1f %s %s %s\n",orders[i].id , orders[i].good_id , orders[i].price , \
-        orders[i].date , orders[i].seller_id , orders[i].buyer_id);
-    fclose(ptr);
-}
 
 void Load_Order()
 {
@@ -25,35 +16,29 @@ void Load_Order()
     fclose(ptr);
 }
 
-void Print_Orders()
+void Out_Order()
 {
-    for(int i = 0; i < Total_OrdersNumber ; i++)
-        printf("%10s%10s%.1f%10s%10s%10s\n",orders[i].id , orders[i].good_id , orders[i].price , \
-            orders[i].date , orders[i].seller_id , orders[i].buyer_id);
+    FILE *ptr = fopen(FILEPATH,"w");
+    for (int i = 0; i < Total_OrdersNumber; i++)
+        fprintf(ptr,"%s %s %.1f %s %s %s\n",orders[i].id , orders[i].good_id , orders[i].price , \
+        orders[i].date , orders[i].seller_id , orders[i].buyer_id);
+    fclose(ptr);
 }
 
-void Add_Order(Order *tmp)
+void Print_Orders()
 {
-    Generate_ID(tmp->id, 'T');
-    Get_Time(tmp->date);
-    orders[Total_OrdersNumber ++] = *tmp;
-    /*
-    Generate_ID(orders[Total_OrdersNumber].id , 'T');
-    strcpy(orders[Total_OrdersNumber].good_id, good->id);
-    Get_Time(orders[Total_OrdersNumber].date);
-    orders[Total_OrdersNumber].price = good->price;
-    strcpy(orders[Total_OrdersNumber].seller_id , good->SellID);
-    strcpy(orders[Total_OrdersNumber].buyer_id , user);
-    */
+    Print_OrderInfo_Banner();
+    for(int i = 0; i < Total_OrdersNumber ; i++){
+        printf("|%-10s |%-10s |%-5.1f |%-10s |%-10s |%-10s |\n",orders[i].id , orders[i].good_id , orders[i].price , \
+            orders[i].date, orders[i].seller_id , orders[i].buyer_id);
+        printf("%s--------------------------------------------------------------------%s\n", BOLD, RESET);}
 }
 
 void Print_SellerOwnOrder(char *id)
 {
-    for(int i = 0; i < Total_OrdersNumber; i ++)
-    {
+    for(int i = 0; i < Total_OrdersNumber; i ++){
         if(strcmp(orders[i].seller_id, id) == 0)
-            printf("购买用户：%s 商品订单：%s\n", id , orders[i].id );
-    }
+            printf("购买用户：%s 商品订单：%s\n", id , orders[i].id );}
 }
 
 void Print_BuyerOwnOrder(char *id)
@@ -65,46 +50,9 @@ void Print_BuyerOwnOrder(char *id)
     }
 }
 
-/*
-void Search_OwnOrders(char type, char *id)
+void Add_Order(Order *tmp)
 {
-    int flag = 0;
-    if(type =='U')
-    {
-        for(int i = 0 ; i< Total_OrdersNumber ; i++)
-        {
-            if(strcmp(orders[i].buyer_id, id) == 0)//用户id与所购买商品的买家id一致
-            {
-                flag = 1;
-                printf("%s\n", orders[i].id );
-            }
-        }
-        if(flag == 0)
-        {
-            printf("暂无购买记录！");
-        }
-        Buyer_Menu();
-    }
-    if(type =='S')
-    //类似这样
-    {
-        printf("您的历史订单为:\n");
-
-        for(int i = 0 ; i < Total_OrdersNumber ; i++)
-        {   
-            if(strcmp(orders[i].seller_id, id) == 0)//查看谁购买了自己的商品
-            {
-                flag = 1 ;
-                printf("购买用户：%s 商品订单：%s\n", \
-                id , orders[i].id );
-            }
-        }
-        if(flag == 0)
-        {
-            printf("暂无历史订单");
-        }
-        
-        Seller_Menu(Now_User);
-    }
+    Generate_ID(tmp->id, 'T');
+    Get_Time(tmp->date);
+    orders[Total_OrdersNumber ++] = *tmp;
 }
-*/

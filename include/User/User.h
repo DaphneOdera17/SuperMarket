@@ -13,24 +13,21 @@ typedef struct{
     double res; // 用户余额
 }User;
 
-int SearchUserID(char* id);
-
 User *Get_User(int idx);
+int SearchUserID(char* id);
+int SearchUserName(char *name);
 
+void Load_User();
 void Out_User();
 
 void Print_UserInfo();
-
 void User_Info();
 
-int SearchUserID(char* id);
-
-int SearchUserName(char *name);
-
-void Recharge();
+void Recharge(double res);
 
 int Add_User(User* tmp);
-
 int Delete_User(char *name);
+
+int check(char *name, char *pwd);
 
 #endif

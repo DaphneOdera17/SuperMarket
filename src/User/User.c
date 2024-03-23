@@ -8,6 +8,8 @@ static const char* FILEPATH = "src/Data/User_Info.txt";
 static User users[MAX_USER_NUMBER];
 static int Total_UserNumber = 0;
 
+User *Get_User(int idx) {return users + idx;}
+
 void Load_User()
 {
     FILE *ptr;
@@ -18,8 +20,6 @@ void Load_User()
         fclose(ptr);
 }
 
-User *Get_User(int idx) {return users + idx;}
-
 void Out_User()
 {
     FILE* ptr = fopen(FILEPATH, "w");
@@ -27,29 +27,6 @@ void Out_User()
         fprintf(ptr, "%s %s %s %s %s %.1f\n", users[i].id, users[i].name, users[i].password, \
 users[i].tel, users[i].address, users[i].res);
     fclose(ptr);
-}
-
-void Print_UserInfo()
-{
-    Print_UserInfo_Banner();
-    for(int i = 0; i < Total_UserNumber; i ++)
-    {
-        printf("|%-6s |%-7s |%-15s |%-15s |%-15s |%-9.1lf |\n", \
-            users[i].id, users[i].name, users[i].password, users[i].tel, users[i].address, users[i].res);
-        printf("------------------------------------------------------------------------\n");
-    }
-}
-
-void User_Info()
-{
-    loadingMessage();
-    sleep(0.5);
-    printf("%s%s您的信息为: %s\n", BOLD, FRONT_GREEN, RESET);
-    printf("用户名称: %s\n", users[Now_User].name);
-    printf("用户密码: %s\n", users[Now_User].password);
-    printf("用户联系方式: %s\n", users[Now_User].tel);
-    printf("用户地址: %s\n", users[Now_User].address);
-    printf("用户余额: %.2lf\n\n", users[Now_User].res);
 }
 
 int SearchUserID(char* id)
@@ -67,6 +44,30 @@ int SearchUserName(char *name)
             return i;
     return -1;
 }
+
+void Print_UserInfo()
+{
+    Print_UserInfo_Banner();
+    for(int i = 0; i < Total_UserNumber; i ++)
+    {
+        printf("|%-10s |%-10s |%-10s |%-10s |%-15s\t|%-10.1lf |\n", \
+            users[i].id, users[i].name, users[i].password, users[i].tel, users[i].address, users[i].res);
+        printf("%s-----------------------------------------------------------------------------%s\n", BOLD, RESET);
+    }
+}
+
+void User_Info()
+{
+    loadingMessage();
+    sleep(0.5);
+    printf("%s%s您的信息为: %s\n", BOLD, FRONT_GREEN, RESET);
+    printf("用户名称: %s\n", users[Now_User].name);
+    printf("用户密码: %s\n", users[Now_User].password);
+    printf("用户联系方式: %s\n", users[Now_User].tel);
+    printf("用户地址: %s\n", users[Now_User].address);
+    printf("用户余额: %.2lf\n\n", users[Now_User].res);
+}
+
 
 void Recharge(double res)
 {
@@ -95,6 +96,7 @@ int Delete_User(char *name)
         return -1;
     for(int i = idx; i < Total_UserNumber - 1; i ++)
         users[i] = users[i + 1];
+    Total_UserNumber --;
     return 0;
 }
 
@@ -105,68 +107,3 @@ int check(char *name, char *pwd)
         return -1;
     return strcmp(users[idx].password, pwd) == 0;
 }
-
-/*
-void Buy_Product()
-{
-    char ch;
-    char a[MAX_NAME_LENGTH];
-
-    printf("请输入您要查找的商品名称或商品id: ");
-    scanf("%s", a);
-    extern int Now_User;
-
-    int flag = search(a);
-    if(flag == -1)
-    {
-        printf("未查找到商品！");
-        Buyer_Menu();
-    }
-    else
-    {
-        printf("商品id:%s \n", goods[flag].id );
-        printf("商品名称：%s \n",goods[flag].name);
-        printf("商品价格：%.1f\n", goods[flag].price);
-        printf("商品描述：%s\n",goods[flag].discribe);
-        printf("上架时间：%s\n",goods[flag].SellTime);
-        printf("剩余数量：%d\n",goods[flag].cnt);
-        switch(goods[flag].state)
-        {
-            case 0: printf("商品状态： 已下架 \n"); break;
-            case 1: printf("商品状态： 在售中 \n"); break;
-            case 2: printf("商品状态： 已售空 \n"); break;
-        }
-
-        printf("您确定购买此商品吗?请输入Yes/No\n");//Y表示确定购买 N表示取消购买
-        char ch[5];
-        scanf("%s",ch);
-    
-        if(strcmp(ch , "Yes") == 0)
-        {
-            if(users[Now_User].res < goods[flag].price)
-            {
-                printf("余额不足，请前往个人信息管理充值后购买！");
-                User_Menu();
-            }
-            else if(goods[flag].state == 0 || goods[flag].state == 2)
-            {
-                printf("该商品已下架或已售空，请选择其他商品购买！");
-                Buyer_Menu();
-            }
-            else
-            {
-                users[Now_User].res -= goods[flag].price; 
-                Out_User();
-                printf("购买成功！\n");
-                Add_Order(flag, users[Now_User].id);
-                printf("当前账户余额为： %.1f",users[Now_User].res);
-                Buyer_Menu();
-            }
-        }
-        else
-        {
-            printf("已取消购买！");Buyer_Menu();
-        }
-    }
-}
-*/

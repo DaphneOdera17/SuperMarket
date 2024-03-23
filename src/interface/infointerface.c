@@ -4,15 +4,12 @@
 static HANDLE handler[] = {User_Info, MODIFY_Interface, RECHARGE};
 
 void INFO_Interface() {
-    successMessage();
-    int op = menu(USER);
-    while (op != optionNumber[USER]) {
+    int op = menu(INFO);
+    while (op != optionNumber[INFO]) {
         loadingMessage();
         handler[op - 1]();
-        op = menu(USER);
+        op = menu(INFO);
     }
-    loadingMessage();
-    successMessage();
 }
 
 void RECHARGE()
