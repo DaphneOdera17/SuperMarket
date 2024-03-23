@@ -98,7 +98,6 @@ int Delete_User(char *name)
     return 0;
 }
 
-
 int check(char *name, char *pwd)
 {
     int idx = SearchUserName(name);

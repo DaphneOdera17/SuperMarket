@@ -1,7 +1,7 @@
 #include "interface/interface.h"
 #include <stdio.h>
 
-static HANDLE handler[] = {User_Info, MODIFY_Interface, };
+static HANDLE handler[] = {User_Info, MODIFY_Interface, RECHARGE};
 
 void INFO_Interface() {
     successMessage();
