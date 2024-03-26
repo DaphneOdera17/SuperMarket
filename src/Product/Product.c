@@ -67,9 +67,9 @@ void Product_Info(int idx)
     printf("商品名称: %s\n", Good->name);
     printf("商品价格: %lf\n", Good->price);
     printf("卖家id: %s\n", Good->SellID);
-    printf("商品上架时间: %s\n", Good->SellTime);
+    printf("商品上架时间: %s\n", Good->SellTime); 
     printf("商品数量: %d\n", Good->cnt);
-    printf("商品状态: %s%s%s%s", BOLD, FRONT_RED, Get_State(Good->state), RESET);
+    printf("商品状态: %s%s%s%s\n", BOLD, FRONT_RED, Get_State(Good->state), RESET);
 }
 
 void Print_OwnProduct(char *id)
@@ -110,9 +110,9 @@ void Buy_Good_Confirm(int idx)
     {
         User *tmp = Get_User(Now_User);
         if(tmp->res < goods[idx].price)
-            printf("余额不足，请前往个人信息管理充值后购买！");
+            printf("余额不足，请前往个人信息管理充值后购买！\n");
         else if(goods[idx].state == 0 || goods[idx].state == 2)
-            printf("该商品已下架或已售空，请选择其他商品购买！");
+            printf("该商品已下架或已售空，请选择其他商品购买！\n");
         else
         {
             tmp->res -= goods[idx].price; 
@@ -128,5 +128,5 @@ void Buy_Good_Confirm(int idx)
         }
     }
     else
-        printf("已取消购买！");
+        printf("已取消购买！\n");
 }

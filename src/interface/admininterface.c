@@ -17,7 +17,7 @@ void ADMIN_Interface() {
 void DELETE_User()
 {
     char name[MAX_USERNAME_LENGTH];
-    printf("请输入您要删除的用户名: ");
+    printf("请输入您要删除的用户ID: ");
     scanf("%s", name);
     if(Delete_User(name) == -1)
     {

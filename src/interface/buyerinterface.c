@@ -25,8 +25,7 @@ int SEARCH_Good()
         failureMessage();
         return -1;
     }
-    else
-        return idx;
+    else return idx;
 }
 
 void Search_Good()
@@ -49,7 +48,10 @@ void Buy_Good()
 void BUYER_OwnOrder()
 {
     User *tmp = Get_User(Now_User);
-    Print_BuyerOwnOrder(tmp->id);
+    if (Print_BuyerOwnOrder(tmp->id) == 0)
+        printf("暂无订单");
+    else 
+        Print_BuyerOwnOrder(tmp->id);
 }
 
 void GOOD_Detail()

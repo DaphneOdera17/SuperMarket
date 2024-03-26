@@ -17,7 +17,7 @@ void Out_Order();
 
 void Print_Orders();
 void Print_SellerOwnOrder(char *id);
-void Print_BuyerOwnOrder(char *id);
+int Print_BuyerOwnOrder(char *id);
 
 void Add_Order(Order *tmp);
 
