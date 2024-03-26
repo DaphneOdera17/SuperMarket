@@ -3,14 +3,7 @@
 
 static HANDLE handler[] = {User_Info, MODIFY_Interface, RECHARGE};
 
-void INFO_Interface() {
-    int op = menu(INFO);
-    while (op != optionNumber[INFO]) {
-        loadingMessage();
-        handler[op - 1]();
-        op = menu(INFO);
-    }
-}
+void INFO_Interface() {MAKE_Interface(INFO, handler);}
 
 void RECHARGE()
 {

@@ -32,15 +32,17 @@ static const char *menuPrompts[MENU_NUMBER] = {"\
 | 1.查看信息 | 2.修改信息 | 3.充值 | 4.返回用户主界面 | \n\
 +============+============+========+==================+ \n", \
 "\
-+==========+========+========+========+ \n\
-| 1.名称   | 2.价格 | 3.描述 | 4.返回 | \n\
-+==========+========+========+========+ \n"};
++========+========+========+========+ \n\
+| 1.名称 | 2.价格 | 3.描述 | 4.返回 | \n\
++========+========+========+========+ \n"};
 
 static const char *menuName[MENU_NUMBER] = {"Main", "User", "Seller", "Buyer", "Admin", "Modify", "Info", "Products"};
 
+static const char *tapNum[MENU_NUMBER] = {"\t\t      ", "\t\t      ", "\t\t\t\t\t  ", "\t\t\t\t\t    ", "\t\t\t\t\t  ", "\t\t      ", "\t\t      ", "\t     "};
+
 static void PromptMessage(Menu type){
-    printf("\t\t\t%s%s Menu%s\n", REVERSE, menuName[type], RESET);
-    printf("%s\n请输入您的操作: ", menuPrompts[type]);
+    printf("%s%s%s Menu%s\n", tapNum[type], REVERSE, menuName[type], RESET);
+    printf("%s\n%s请输入您的操作:%s ", menuPrompts[type], FRONT_GREEN, RESET);
 }; 
 
 const int optionNumber[MENU_NUMBER] = {4, 4, 6, 6, 7, 4, 4, 4};
@@ -56,6 +58,7 @@ int menu(Menu type)
     {
         if(res >= 1 && res <= optionNumber[type]) break;
         failureMessage();
+        printf("%s请输入您的操作:%s ", FRONT_GREEN, RESET);
         scanf("%s", buffer);
         res = atoi(buffer);
     }

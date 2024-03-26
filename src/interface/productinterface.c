@@ -5,16 +5,7 @@ static HANDLE handler[] = {MODIFY_GoodName, MODIFY_GoodPrice, MODIFY_GoodDes};
 
 int Now_Good = -1;
 
-void PRODUCT_Interface()
-{
-    int op = menu(PRODUCTS);
-    while(op != optionNumber[PRODUCTS]) 
-    {
-        loadingMessage();
-        handler[op - 1](); 
-        op = menu(PRODUCTS);
-    }
-}
+void PRODUCT_Interface() {MAKE_Interface(PRODUCTS, handler);}
 
 void MODIFY_GoodName() 
 {

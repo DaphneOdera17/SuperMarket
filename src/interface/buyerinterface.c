@@ -5,14 +5,7 @@
 
 static HANDLE handler[] = {Print_Products, Search_Good , Buy_Good , BUYER_OwnOrder, GOOD_Detail};
 
-void BUYER_Interface() {
-    int op = menu(BUYER);
-    while (op != optionNumber[BUYER]) {
-        loadingMessage();
-        handler[op - 1]();
-        op = menu(BUYER);
-    }
-}
+void BUYER_Interface() {MAKE_Interface(BUYER, handler);}
 
 int SEARCH_Good()
 {
@@ -41,17 +34,20 @@ void Buy_Good()
 {
     printf("请输入您要购买的商品名称或ID: ");
     int idx = SEARCH_Good();
-    printf("您确定购买此商品吗?请输入Yes/No\n");//Y表示确定购买 N表示取消购买
-    Buy_Good_Confirm(idx);
+    if(idx != -1)
+    {
+        printf("您确定购买此商品吗? 请输入 %s%s%sYes/No%s\n", BOLD, FRONT_RED, UNDERLINE, RESET);//Y表示确定购买 N表示取消购买
+        Buy_Good_Confirm(idx);
+    }
 }
 
 void BUYER_OwnOrder()
 {
     User *tmp = Get_User(Now_User);
-    if (Print_BuyerOwnOrder(tmp->id) == 0)
+
+    int k = Print_BuyerOwnOrder(tmp->id);
+    if (k == 0)
         printf("暂无订单");
-    else 
-        Print_BuyerOwnOrder(tmp->id);
 }
 
 void GOOD_Detail()

@@ -34,15 +34,15 @@ void Print_Orders()
         printf("%s--------------------------------------------------------------------%s\n", BOLD, RESET);}
 }
 
-void Print_SellerOwnOrder(char *id)
+int Print_SellerOwnOrder(char *id)
 {
     int flag = 0;
     for(int i = 0; i < Total_OrdersNumber; i ++)
     {
         if(strcmp(orders[i].seller_id, id) == 0)
         {
-            printf("购买用户：%s 商品订单：%s\n", id , orders[i].id );
-            return flag = 1;
+            printf("购买用户：%s 商品订单：%s\n", id, orders[i].id );
+            flag = 1;
         }
     }  
     return flag; 
@@ -55,7 +55,8 @@ int Print_BuyerOwnOrder(char *id)
     {
         if(strcmp(orders[i].buyer_id, id) == 0){
             printf("商品订单：%s 商品卖家：%s \n", orders[i].id , orders[i].seller_id );
-            return flag = 1;}
+            flag = 1;
+        }
     }
     return flag;
 }

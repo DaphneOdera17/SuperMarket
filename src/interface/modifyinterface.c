@@ -2,28 +2,14 @@
 #include <stdio.h>
 #include <string.h>
 
-static HANDLE handler[] = {MODIFY_UserName, MODIFY_UserPwd, MODIFY_UserTel};
+static HANDLE handler[] = {MODIFY_UserPwd, MODIFY_UserTel, MODIFY_UserAddress};
 
-void MODIFY_Interface() {
-    int op = menu(MODIFY);
-    while (op != optionNumber[MODIFY]) {
-        loadingMessage();
-        handler[op - 1]();
-        op = menu(MODIFY);
-    }
-}
-
-void MODIFY_UserName()
-{
-    User *tmp = Get_User(Now_User);
-    printf("请输入修改后的名字: ");
-    scanf("%s", tmp->name);
-}
+void MODIFY_Interface() {MAKE_Interface(MODIFY, handler);}
 
 void MODIFY_UserPwd()
 {
     User *tmp = Get_User(Now_User);
-    printf("请输入密码：");
+    printf("请输入修改后的密码：");
     scanf("%s", tmp->password);
 }
 void MODIFY_UserTel()
@@ -31,4 +17,11 @@ void MODIFY_UserTel()
     User *tmp = Get_User(Now_User);
     printf("请输入联系方式：");
     scanf("%s", tmp->tel);
+}
+
+void MODIFY_UserAddress()
+{
+    User *tmp = Get_User(Now_User);
+    printf("请输入修改后的地址: ");
+    scanf("%s", tmp->address);
 }
