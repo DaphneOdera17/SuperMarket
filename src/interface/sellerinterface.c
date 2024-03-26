@@ -45,7 +45,10 @@ void SELLER_OwnGoods()
 void SELLER_OwnOrder()
 {
     User *tmp = Get_User(Now_User);
-    Print_SellerOwnOrder(tmp->id);
+    if (Print_SellererOwnOrder(tmp->id) == 0)
+        printf("暂无订单\n");
+    else 
+        Print_SellerOwnOrder(tmp->id);
 }
 
 void DELETE_Good()

@@ -21,7 +21,6 @@ void MODIFY_GoodName()
     Product *tmp = Get_Good(Now_Good);
     printf("请输入商品名字：");
     scanf("%s", tmp->name);
-    free(tmp);
 }
 
 void MODIFY_GoodPrice()
@@ -29,8 +28,6 @@ void MODIFY_GoodPrice()
     Product *tmp = Get_Good(Now_Good);
     printf("请输入商品价格：");
     scanf("%s", tmp->name);
-    free(tmp);
-
 }
 
 void MODIFY_GoodDes()
@@ -38,6 +35,4 @@ void MODIFY_GoodDes()
     Product *tmp = Get_Good(Now_Good);
     printf("请输入商品描述：");
     scanf("%s", tmp->name);
-    free(tmp);
-    
 }

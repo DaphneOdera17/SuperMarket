@@ -31,10 +31,25 @@ users[i].tel, users[i].address, users[i].res);
 
 int SearchUserID(char* id)
 {
-    for(int i = 0; i < Total_UserNumber; i ++)
-        if(strcmp(users[i].id, id) == 0)
-            return i;
-    return -1;
+    //二分查找
+    int left = 0;
+    int right = Total_UserNumber;
+        while(left <= right)
+        {
+            int middle = (left + right) / 2;
+            if(strcmp(users[middle].id , id) > 0)//第一个字符串大于第二个字符串 返回正数
+                right = middle - 1;
+            else if(strcmp(users[middle].id , id) < 0)//第一个字符串小于第二个字符串 返回负数
+                left = middle + 1;
+            else 
+            return middle;
+        }
+        return -1;
+
+    // for(int i = 0; i < Total_UserNumber; i ++)
+    //     if(strcmp(users[i].id, id) == 0)
+    //         return i;
+    // return -1;
 }
 
 int SearchUserName(char *name)
@@ -68,7 +83,6 @@ void User_Info()
     printf("用户余额: %.2lf\n\n", users[Now_User].res);
 }
 
-
 void Recharge(double res)
 {
     User *tmp = Get_User(Now_User);
@@ -91,7 +105,7 @@ int Add_User(User* tmp)
 
 int Delete_User(char *name)
 {
-    int idx = SearchUserName(name);
+    int idx = SearchUserID(name);
     if(idx == -1)
         return -1;
     for(int i = idx; i < Total_UserNumber - 1; i ++)
