@@ -4,13 +4,13 @@
 #include <string.h>
 #include <unistd.h>
 
-static const char* FILEPATH = "src/Data/User_Info.txt";
+static const char* FILEPATH = "src/Data/User_Info.txt"; // 用户信息存储地址
 static User users[MAX_USER_NUMBER];
-static int Total_UserNumber = 0;
+static int Total_UserNumber = 0; // 用户总数量
 
 User *Get_User(int idx) {return users + idx;}
 
-void Load_User()
+void Load_User() // 加载用户
 {
     FILE *ptr;
     ptr = fopen(FILEPATH, "r");
@@ -20,7 +20,7 @@ void Load_User()
         fclose(ptr);
 }
 
-void Out_User()
+void Out_User() // 将用户信息输出到文件中
 {
     FILE* ptr = fopen(FILEPATH, "w");
     for (int i = 0; i < Total_UserNumber; i++)
@@ -90,7 +90,7 @@ int Add_User(User* tmp)
     return 0;
 }
 
-void Delete_User(char *id, int idx)
+void Delete_User(int idx)
 {
     for(int i = idx; i < Total_UserNumber - 1; i ++)
         users[i] = users[i + 1];

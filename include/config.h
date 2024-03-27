@@ -15,8 +15,6 @@
 #define MENU_NUMBER 8
 #define MAX_LEN 64
 
-#define DEL_NUM 0x7F // 删除键
-
 static const char* ADMIN_NAME = "Admin";
 static const char* ADMIN_PASSWORD = "123456";
 

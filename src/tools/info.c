@@ -15,13 +15,11 @@ void Generate_ID(char* s, char type) // *s 也就是 字符串 对应 users[i].I
     // 以只读方式打开文件
     FILE* ptr = fopen(FILEPATH, "r");
     
-    if(ptr == NULL)
-    {
+    if(ptr == NULL){
         failureMessage();
         return ;
     }
-    else
-    {
+    else{
         fscanf(ptr, "%d%d%d", &uid, &gid, &tid);
         fclose(ptr);
     }

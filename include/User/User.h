@@ -26,7 +26,7 @@ void User_Info();
 void Recharge(double res);
 
 int Add_User(User* tmp);
-void Delete_User(char *id, int idx);
+void Delete_User(int idx);
 
 int check(char *name, char *pwd);
 

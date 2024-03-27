@@ -9,8 +9,8 @@
 
 int main()
 {
-    // 加载
-    Load_User();
+    // 从文件中加载数据
+    Load_User(); 
     Load_Products();
     Load_Order();
 
@@ -20,7 +20,7 @@ int main()
     sleep(1);
     loadingSuccess();
 
-    MAIN_Interface();
+    MAIN_Interface(); // 进入主交互界面
 
     // 输出外部文件
     Out_Products();
