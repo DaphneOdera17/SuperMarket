@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-static const char* FILEPATH = "src/Data/Orders.txt";
+static const char* FILEPATH = "src/Data/Orders.txt"; // 订单信息存储地址
 static int Total_OrdersNumber = 0; 
 extern int Now_User;
 static Order orders[MAX_ORDER_NUMBER];

@@ -35,6 +35,6 @@ int SearchGood(char *s);
 void Buy_Good_Confirm(int idx);
 
 void Add_Product(Product *tmp);
-int Delete_Product(char *s);
+int Delete_Product(char *s, int level);
 
 #endif

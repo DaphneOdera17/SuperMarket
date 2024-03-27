@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-static const char* FILEPATH = "src/Data/Goods_Info.txt";
+static const char* FILEPATH = "src/Data/Goods_Info.txt"; // 产品信息存储地址
 static int Total_ProductsNumber = 0;
 Product goods[MAX_PRODUCT_NUMBER];
 extern int Now_User;
@@ -65,7 +65,7 @@ void Product_Info(int idx)
     Product *Good = Get_Good(idx);
     printf("商品id: %s\n", Good->id);
     printf("商品名称: %s\n", Good->name);
-    printf("商品价格: %lf\n", Good->price);
+    printf("商品价格: %.1lf\n", Good->price);
     printf("卖家id: %s\n", Good->SellID);
     printf("商品上架时间: %s\n", Good->SellTime); 
     printf("商品数量: %d\n", Good->cnt);
@@ -92,12 +92,15 @@ void Add_Product(Product *tmp)
     goods[Total_ProductsNumber ++] = *tmp;
 }
 
-int Delete_Product(char *s)
+int Delete_Product(char *s, int level)
 {
     int idx = SearchGood(s);
     if(idx == -1)
         return -1;
-    
+    if(level == 2 && strcmp(goods[idx].SellID, Get_User(Now_User)->id) != 0)
+        return 3;
+    if(goods[idx].state == 0)
+        return 2;
     goods[idx].state = 0;
     return 0;
 }
