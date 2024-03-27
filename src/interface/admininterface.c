@@ -1,6 +1,4 @@
 #include "interface/interface.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 static HANDLE handler[] = {Print_Products, Search_Good, Print_Orders , Print_UserInfo , DELETE_User , ADMIN_DELETE_Good};
 

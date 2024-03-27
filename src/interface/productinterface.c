@@ -1,5 +1,4 @@
 #include "interface/interface.h"
-#include <stdio.h>
 
 static HANDLE handler[] = {MODIFY_GoodName, MODIFY_GoodPrice, MODIFY_GoodDes};
 

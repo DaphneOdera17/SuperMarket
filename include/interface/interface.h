@@ -5,10 +5,13 @@
 #include "Order/Order.h"
 #include "Product/Product.h"
 #include "Menu/menu.h"
+#include "config.h"
 #include "tools/color.h"
 #include "tools/hint.h"
 #include "tools/info.h"
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 typedef void (*HANDLE)(void); // 定义函数指针
 

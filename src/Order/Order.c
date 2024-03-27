@@ -1,6 +1,4 @@
 #include "interface/interface.h"
-#include <stdio.h>
-#include <string.h>
 
 static const char* FILEPATH = "src/Data/Orders.txt"; // 订单信息存储地址
 static int Total_OrdersNumber = 0; 
@@ -27,7 +25,7 @@ void Out_Order()
 
 void Print_Orders()
 {
-    Print_OrderInfo_Banner();
+    Print_OrderInfo_Banner();//输出菜单顶部信息
     for(int i = 0; i < Total_OrdersNumber ; i++){
         printf("|%-10s |%-10s |%-5.1f |%-10s |%-10s |%-10s |\n",orders[i].id , orders[i].good_id , orders[i].price , \
             orders[i].date, orders[i].seller_id , orders[i].buyer_id);
