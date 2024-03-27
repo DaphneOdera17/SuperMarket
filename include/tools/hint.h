@@ -40,5 +40,6 @@ void error_finding_user();
 void error_finding_good();
 
 void FailToAddGood();
+void Repeat_Delete();
 
 #endif

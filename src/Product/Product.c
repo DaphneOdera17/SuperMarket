@@ -45,7 +45,7 @@ int SearchGood(char *s)
 
 void Print_Product(int idx)
 {
-    Print_SingleGood_Banner();
+    Print_SingleGood_Banner();//输出菜单顶部信息
     printf("|%-7s\t|%-15s\t|%-5.1f\t|%-10s|%-4d|%s%s%-11s%s|\n", goods[idx].id, goods[idx].name, goods[idx].price, goods[idx].SellTime, goods[idx].cnt, BOLD, FRONT_RED, Get_State(goods[idx].state), RESET);
 }
 

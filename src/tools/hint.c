@@ -76,6 +76,7 @@ static const char* SUCCESSFUL = "\t\t*** 操作成功！***";
 static const char* ERRO_FINDING_USER = "\t\t***** 未找到该用户！*****";
 static const char* ERRO_FINDING_GOOD = "\t\t***** 未找到该商品！*****";
 static const char* FAILTOADDGOOD = "\t\t*** 该商品已存在! ***";
+static const char* REPEAT_DELETE = "\t\t*** 商品已经下架，请勿重复操作！***\n";
 
 void welcomeMessage() 
 {
@@ -118,3 +119,5 @@ void Print_GoodInfo_Banner(){printf("%s%s%s", BOLD, PRODUCT_INFO_BANNER, RESET);
 void Print_SingleGood_Banner(){printf("%s%s%s", BOLD, SINGLE_PRODUCT_INFO_BANNER, RESET);}
 
 void Print_OrderInfo_Banner(){printf("%s%s%s", BOLD,  ORDER_INFO_BANNER, RESET);}
+
+void Repeat_Delete() {printf("%s%s%s%s", BOLD, FRONT_RED, REPEAT_DELETE, RESET);}
