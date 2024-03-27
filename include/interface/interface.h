@@ -14,6 +14,7 @@ typedef void (*HANDLE)(void); // 定义函数指针
 
 extern int Now_User;
 
+void MAKE_Interface(Menu type, HANDLE handler[]);
 void USER_Interface();
 void BUYER_Interface();
 void SELLER_Interface();
@@ -35,13 +36,15 @@ void RECHARGE();
 
 void getName(char* name);
 void getPassword(char* password);
+void try_again(char *username, char *password, int cnt);
+void User_LoginSuccess(char *username);
 void User_Login();
 void Admin_Login();
 void User_SignUp();
 
-void MODIFY_UserName();
 void MODIFY_UserPwd();
 void MODIFY_UserTel();
+void MODIFY_UserAddress();
 
 void MODIFY_GoodName();
 void MODIFY_GoodPrice();

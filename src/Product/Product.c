@@ -122,11 +122,11 @@ void Buy_Good_Confirm(int idx)
             strcpy(tmp_order->seller_id, goods[idx].SellID);
             strcpy(tmp_order->buyer_id, tmp->id);
             tmp_order->price = goods[idx].price;
-            Add_Order(tmp_order);//购买成功后添加订单到文件
-            printf("当前账户余额为： %.1f",tmp->res);
+            Add_Order(tmp_order); //购买成功后添加订单到文件
+            printf("当前账户余额为： %.1f\n",tmp->res);
             free(tmp_order);
         }
     }
     else
-        printf("已取消购买！\n");
+        printf("%s%s已取消购买！%s\n", BOLD, FRONT_RED, RESET);
 }

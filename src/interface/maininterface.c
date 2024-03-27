@@ -6,6 +6,18 @@
 
 static HANDLE handler[] = {User_Login, User_SignUp, Admin_Login};
 
+void MAKE_Interface(Menu type, HANDLE handler[])
+{
+    int op = menu(type);
+    while(op != optionNumber[type]) 
+    {
+        handler[op - 1](); 
+        op = menu(type);
+    }
+}
+
+void MAIN_Interface() {MAKE_Interface(MAIN, handler);}
+
 void getName(char* name)
 {
     printf("请输入用户名：");
@@ -40,6 +52,29 @@ void getPassword(char* password) {
     tcsetattr(fileno(stdin), TCSANOW, &oldAttr);
 }
 
+void try_again(char *username, char *password, int cnt)
+{
+    if(cnt == 0)
+    {
+        printf("%s%s%s您的次数已用完！\n%s", BOLD, UNDERLINE, FRONT_RED, RESET);
+        exitMessage();
+        exit(0);
+    }
+    printf("您还有 %s%s%s%d%s 次机会。", BOLD, UNDERLINE, FRONT_RED, cnt, RESET);
+    getPassword(password);puts("");
+    if(check(username, password)!= 1)
+        try_again(username, password, cnt - 1);
+    else
+        User_LoginSuccess(username);
+}
+
+void User_LoginSuccess(char *username)
+{
+    Now_User = SearchUserName(username);
+    loginsuccessMessage();
+    USER_Interface();
+}
+
 void User_Login()
 {
     getchar();
@@ -53,18 +88,13 @@ void User_Login()
 
     int flag = check(username, password); // 0 表示未查找到用户 1 表示查找到对应的用户
     if(flag == -1)
-    {
         error_finding_user();
-    }
     else if(check(username, password))
-    {
-        Now_User = SearchUserName(username);
-        loginsuccessMessage();
-        USER_Interface();
-    }
+        User_LoginSuccess(username);
     else
     {
         loginfailureMessage();
+        try_again(username, password, 3);
     }
 }
 
@@ -102,16 +132,4 @@ void User_SignUp()
     else
         successMessage();
     free(tmp);
-}
-
-void MAIN_Interface()
-{
-    int op = menu(MAIN);
-    while(op != optionNumber[MAIN]) 
-    {
-        loadingMessage();
-        handler[op - 1](); 
-        op = menu(MAIN);
-    }
-    loadingMessage();
 }

@@ -57,11 +57,11 @@ static const char* ORDER_INFO_BANNER = "\
 ";
 
 static const char* FAILURE = "\t\t*** 操作失败,请重新再试! ***";
-static const char* EXIT = "\t\t*** 退出成功! ***";
+static const char* EXIT = "\t\t\t\t\t*** 退出成功! ***";
 static const char* LOGINFAILURE = "\t\t*** 登陆失败，请重新再试！***";
 static const char* LOGINSUCCESS = "\n\t\t*** 登陆成功！***";
 static const char* DESIGNERS = "Designer: Zhang Xinyi, Huang Xueqin.";
-static const char* NEXTTIME = "\t\t*** 欢迎下次再来！***";
+static const char* NEXTTIME = "\t\t\t\t       *** 欢迎下次再来！***";
 static const char* LOADING = "\n\t\t***** 加载中 *****";
 static const char* LOADINGSUCCESS = "\t\t*** 加载成功! ***";
 static const char* LOGINOUT = "\t\t*** 注销成功！***";
@@ -73,8 +73,8 @@ static const char* Info_MENU_TITLE = "\n\t\t+-+ Info Menu +-+";
 static const char* Admin_MENU_TITLE = "\n\t\t+-+ Admin Menu +-+";
 static const char* OPEN_ERROR = "\t\t*** 打开文件失败！ ***";
 static const char* SUCCESSFUL = "\t\t*** 操作成功！***";
-static const char* ERRO_FINDING_USER = "\t\t*** 未找到该用户！***";
-static const char* ERRO_FINDING_GOOD = "\t\t*** 未找到该商品！***";
+static const char* ERRO_FINDING_USER = "\t\t***** 未找到该用户！*****";
+static const char* ERRO_FINDING_GOOD = "\t\t***** 未找到该商品！*****";
 static const char* FAILTOADDGOOD = "\t\t*** 该商品已存在! ***";
 
 void welcomeMessage() 
@@ -97,7 +97,7 @@ void loginfailureMessage(){printf("%s%s%s%s\n\n", BOLD, FRONT_RED, LOGINFAILURE,
 
 void loginsuccessMessage(){printf("%s%s%s%s\n\n", BOLD, FRONT_BLUE, LOGINSUCCESS, RESET);}
 
-void loadingMessage(){printf("%s%s%s\n\n", BOLD, LOADING, RESET);}
+void loadingMessage(){printf("%s%s%s%s\n\n", BOLD, TWINKLING, LOADING, RESET);}
 
 void loadingSuccess(){printf("%s%s%s%s\n\n", BOLD, FRONT_RED, LOADINGSUCCESS, RESET);}
 
@@ -107,11 +107,11 @@ void Print_UserInfo_Banner(){printf("%s%s%s", BOLD, USER_INFO_BANNER, RESET);}
 
 void successMessage(){printf("%s%s%s\n\n", BOLD, SUCCESSFUL, RESET);}
 
-void error_finding_user(){printf("%s%s%s\n", FRONT_RED, ERRO_FINDING_USER, RESET);}
+void error_finding_user(){printf("%s%s%s\n\n", FRONT_RED, ERRO_FINDING_USER, RESET);}
 
-void error_finding_good(){printf("%s%s%s\n",FRONT_RED, ERRO_FINDING_GOOD, RESET);}
+void error_finding_good(){printf("%s%s%s\n\n",FRONT_RED, ERRO_FINDING_GOOD, RESET);}
 
-void FailToAddGood() {printf("%s%s%s%s", BOLD, FRONT_RED, FAILTOADDGOOD, RESET);}
+void FailToAddGood() {printf("%s%s%s%s\n", BOLD, FRONT_RED, FAILTOADDGOOD, RESET);}
 
 void Print_GoodInfo_Banner(){printf("%s%s%s", BOLD, PRODUCT_INFO_BANNER, RESET);}
 

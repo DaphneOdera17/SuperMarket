@@ -4,14 +4,7 @@
 
 static HANDLE handler[] = {ADD_Good, SELLER_OwnGoods, MODIFY_Good, DELETE_Good , SELLER_OwnOrder};
 
-void SELLER_Interface() {
-    int op = menu(SELLER);
-    while (op != optionNumber[SELLER]) {
-        loadingMessage();
-        handler[op - 1]();
-        op = menu(SELLER);
-    }
-}
+void SELLER_Interface() {MAKE_Interface(SELLER, handler);}
 
 void ADD_Good()
 {
@@ -26,7 +19,8 @@ void ADD_Good()
     scanf("%d", &tmp->cnt);
     strcpy(tmp->SellID, Get_User(Now_User)->id);
     Add_Product(tmp);
-    if(SearchGood(tmp->name) != -1)
+    int idx = SearchGood(tmp->name);
+    if(idx != -1 && strcmp(Get_State(Get_Good(idx)->state), "在售中") == 0) // 名字已经存在并且还在出售的商品无法添加
     {
         failureMessage();
         FailToAddGood();
@@ -45,10 +39,10 @@ void SELLER_OwnGoods()
 void SELLER_OwnOrder()
 {
     User *tmp = Get_User(Now_User);
-    if (Print_SellererOwnOrder(tmp->id) == 0)
+    
+    int k = Print_SellerOwnOrder(tmp->id);
+    if (k == 0)
         printf("暂无订单\n");
-    else 
-        Print_SellerOwnOrder(tmp->id);
 }
 
 void DELETE_Good()

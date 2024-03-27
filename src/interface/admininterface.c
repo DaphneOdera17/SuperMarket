@@ -4,28 +4,22 @@
 
 static HANDLE handler[] = {Print_Products, Search_Good, Print_Orders , Print_UserInfo , DELETE_User , DELETE_Good};
 
-void ADMIN_Interface() {
-    successMessage();
-    int op = menu(ADMIN);
-    while (op != optionNumber[ADMIN]) {
-        loadingMessage();
-        handler[op - 1]();
-        op = menu(ADMIN);
-    }
-}
+void ADMIN_Interface() {MAKE_Interface(ADMIN, handler);}
 
 void DELETE_User()
 {
-    char name[MAX_USERNAME_LENGTH];
+    char id[MAX_USERNAME_LENGTH];
     printf("请输入您要删除的用户ID: ");
-    scanf("%s", name);
-    if(Delete_User(name) == -1)
-    {
+    scanf("%s", id);
+    int k = SearchUserID(id);
+    if(k == -1){
         error_finding_user();
         failureMessage();
     }
-    else
+    else{
+        Delete_User(id, k);
         successMessage();
+    }   
 }
 
 void ADMIN_DELETE_Good()

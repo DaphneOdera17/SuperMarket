@@ -8,7 +8,12 @@
     "config.h": "c",
     "user.h": "c",
     "order.h": "c",
-    "unistd.h": "c"
+    "unistd.h": "c",
+    "compare": "c",
+    "type_traits": "c",
+    "menu.h": "c",
+    "string.h": "c",
+    "typeinfo": "c"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",

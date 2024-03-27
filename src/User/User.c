@@ -31,25 +31,15 @@ users[i].tel, users[i].address, users[i].res);
 
 int SearchUserID(char* id)
 {
-    //二分查找
-    int left = 0;
-    int right = Total_UserNumber;
-        while(left <= right)
-        {
-            int middle = (left + right) / 2;
-            if(strcmp(users[middle].id , id) > 0)//第一个字符串大于第二个字符串 返回正数
-                right = middle - 1;
-            else if(strcmp(users[middle].id , id) < 0)//第一个字符串小于第二个字符串 返回负数
-                left = middle + 1;
-            else 
-            return middle;
-        }
-        return -1;
-
-    // for(int i = 0; i < Total_UserNumber; i ++)
-    //     if(strcmp(users[i].id, id) == 0)
-    //         return i;
-    // return -1;
+    int l = 0, r = Total_UserNumber - 1;
+    while(l < r){
+        int mid = l + r >> 1;
+        if(strcmp(users[mid].id, id) >= 0) r = mid;
+        else l = mid + 1;
+    }
+    if(strcmp(users[l].id, id) == 0)
+        return l;
+    return -1;
 }
 
 int SearchUserName(char *name)
@@ -91,27 +81,20 @@ void Recharge(double res)
     printf("目前您的余额为：%.1lf\n", tmp->res);
 }
 
-// 如果添加成功， 返回 0
 int Add_User(User* tmp)
 {
-    // 不存在相同用户名
     if(SearchUserName(tmp->name) != -1)
         return -1;
     Generate_ID(tmp->id, 'U');
-    // 把这个新的 user 加到 users 里面
     users[Total_UserNumber ++] = *tmp;
     return 0;
 }
 
-int Delete_User(char *name)
+void Delete_User(char *id, int idx)
 {
-    int idx = SearchUserID(name);
-    if(idx == -1)
-        return -1;
     for(int i = idx; i < Total_UserNumber - 1; i ++)
         users[i] = users[i + 1];
     Total_UserNumber --;
-    return 0;
 }
 
 int check(char *name, char *pwd)
