@@ -18,8 +18,8 @@ void ADD_Good()
     printf("请输入商品上架数量： ");
     scanf("%d", &tmp->cnt);
     strcpy(tmp->SellID, Get_User(Now_User)->id);
-    Add_Product(tmp);
     int idx = SearchGood(tmp->name);
+    Add_Product(tmp);
     if(idx != -1) // 名字已经存在的商品无法添加
         FailToAddGood(), failureMessage();
     else
@@ -50,9 +50,9 @@ void DELETE_Good()
     if(k == -1)
         error_finding_good(), failureMessage();
     else if(k == 2)
-        printf("%s%s商品已经下架，请勿重复操作！%s", BOLD, FRONT_RED, RESET), failureMessage();
+        Repeat_Delete(), failureMessage();
     else if(k == 3)
-        printf("%s%s您不是该商品的发布者！无操作权限！%s", BOLD, FRONT_RED, RESET), failureMessage();
+        printf("\t\t%s%s*** 您不是该商品的发布者！无操作权限！***%s\n", BOLD, FRONT_RED, RESET), failureMessage();
     else
         successMessage();
 }

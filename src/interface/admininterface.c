@@ -27,7 +27,7 @@ void ADMIN_DELETE_Good()
     if(k == -1)
         error_finding_good(), failureMessage();
     else if(k == 2)
-        printf("%s%s商品已经下架，请勿重复操作！%s", BOLD, FRONT_RED, RESET), failureMessage();
+        Repeat_Delete(), failureMessage();
     else
         successMessage();
 }
