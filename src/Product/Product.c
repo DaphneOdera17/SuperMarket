@@ -1,6 +1,4 @@
 #include "interface/interface.h"
-#include <stdio.h>
-#include <string.h>
 
 static const char* FILEPATH = "src/Data/Goods_Info.txt"; // 产品信息存储地址
 static int Total_ProductsNumber = 0;
@@ -45,7 +43,7 @@ int SearchGood(char *s)
 
 void Print_Product(int idx)
 {
-    Print_SingleGood_Banner();//输出菜单顶部信息
+    Print_SingleGood_Banner();
     printf("|%-7s\t|%-15s\t|%-5.1f\t|%-10s|%-4d|%s%s%-11s%s|\n", goods[idx].id, goods[idx].name, goods[idx].price, goods[idx].SellTime, goods[idx].cnt, BOLD, FRONT_RED, Get_State(goods[idx].state), RESET);
 }
 

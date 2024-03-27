@@ -1,6 +1,4 @@
 #include "interface/interface.h"
-#include <stdio.h>
-#include <string.h>
 
 static HANDLE handler[] = {MODIFY_UserPwd, MODIFY_UserTel, MODIFY_UserAddress};
 

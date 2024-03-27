@@ -1,7 +1,4 @@
 #include "interface/interface.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <termios.h>
 
 static HANDLE handler[] = {User_Login, User_SignUp, Admin_Login};

@@ -1,7 +1,4 @@
 #include "interface/interface.h"
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 
 static HANDLE handler[] = {Print_Products, Search_Good , Buy_Good , BUYER_OwnOrder, GOOD_Detail};
 

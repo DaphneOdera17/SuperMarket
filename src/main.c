@@ -1,11 +1,5 @@
 #include "interface/interface.h"
-#include "tools/hint.h"
-#include "config.h"
-#include "User/User.h"
-#include "Product/Product.h"
-#include "Order/Order.h"
 #include <unistd.h>
-#include <stdio.h>
 
 int main()
 {
