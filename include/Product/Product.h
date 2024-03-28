@@ -27,7 +27,7 @@ void Out_Products();
 
 void Print_Product(int idx);
 void Print_Products();
-void Print_OwnProduct(char *id);
+int Print_OwnProduct(char *id);
 void Product_Info(int idx);
 
 int SearchGood(char *s);
