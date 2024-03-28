@@ -28,7 +28,7 @@ void BUYER_OwnOrder()
     User *tmp = Get_User(Now_User);
     int k = Print_BuyerOwnOrder(tmp->id);
     if (k == 0)
-        printf("%s%s暂无订单%s", BOLD, FRONT_RED, RESET);
+        printf("%s%s暂无订单%s\n", BOLD, FRONT_RED, RESET);
 }
 
 void GOOD_Detail()

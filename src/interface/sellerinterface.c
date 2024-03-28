@@ -28,7 +28,10 @@ void ADD_Good()
 void SELLER_OwnGoods()
 {
     User *tmp = Get_User(Now_User);
-    Print_OwnProduct(tmp->id);
+    int k = Print_OwnProduct(tmp->id);
+    if(k == 0)
+        printf("%s%s未发布过商品%s\n", BOLD, FRONT_RED, RESET);
+    
 }
 
 void SELLER_OwnOrder()
@@ -36,7 +39,7 @@ void SELLER_OwnOrder()
     User *tmp = Get_User(Now_User);
     int k = Print_SellerOwnOrder(tmp->id);
     if (k == 0)
-        printf("暂无订单\n");
+        printf("%s%s暂无订单%s\n", BOLD, FRONT_RED, RESET);
 }
 
 void DELETE_Good()

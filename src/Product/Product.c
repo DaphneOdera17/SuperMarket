@@ -70,15 +70,21 @@ void Product_Info(int idx)
     printf("商品状态: %s%s%s%s\n", BOLD, FRONT_RED, Get_State(Good->state), RESET);
 }
 
-void Print_OwnProduct(char *id)
+int Print_OwnProduct(char *id)
 {
+    int flag = 0;
     Print_GoodInfo_Banner();
     for(int i = 0; i < Total_ProductsNumber; i ++)
     {
         if(strcmp(goods[i].SellID, id) == 0)
+        {
             printf("|%-7s\t|%-15s\t|%-5.1f\t|%-15s\t|%-10s|%-10s|%-4d|%s%s%-11s%s|\n", goods[i].id, goods[i].name, goods[i].price, goods[i].discribe, \
             goods[i].SellID, goods[i].SellTime, goods[i].cnt, BOLD, FRONT_RED, Get_State(goods[i].state), RESET);
+            flag = 1;
+        }
+            
     }
+    return flag;
     printf("%s---------------------------------------------------------------------------------------------%s\n", BOLD, RESET);
 }
 
@@ -111,9 +117,9 @@ void Buy_Good_Confirm(int idx)
     {
         User *tmp = Get_User(Now_User);
         if(tmp->res < goods[idx].price)
-            printf("余额不足，请前往个人信息管理充值后购买！\n");
+            printf("%s%s余额不足，请前往个人信息管理充值后购买！%s\n",BOLD, FRONT_RED, RESET);
         else if(goods[idx].state == 0 || goods[idx].state == 2)
-            printf("该商品已下架或已售空，请选择其他商品购买！\n");
+            printf("%s%s该商品已下架或已售空，请选择其他商品购买！%s\n",BOLD, FRONT_RED, RESET);
         else
         {
             tmp->res -= goods[idx].price; 
