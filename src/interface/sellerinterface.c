@@ -18,12 +18,14 @@ void ADD_Good()
     printf("请输入商品上架数量： ");
     scanf("%d", &tmp->cnt);
     strcpy(tmp->SellID, Get_User(Now_User)->id);
-    Add_Product(tmp);
     int idx = SearchGood(tmp->name);
     if(idx != -1) // 名字已经存在的商品无法添加
         FailToAddGood(), failureMessage();
     else
+    {
+        Add_Product(tmp);
         successMessage();
+    }
     free(tmp);
 }
 

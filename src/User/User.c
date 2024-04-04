@@ -63,8 +63,6 @@ void Print_UserInfo()
 
 void User_Info()
 {
-    loadingMessage();
-    sleep(0.5);
     printf("%s%s您的信息为: %s\n", BOLD, FRONT_GREEN, RESET);
     printf("用户名称: %s\n", users[Now_User].name);
     printf("用户密码: %s\n", users[Now_User].password);
