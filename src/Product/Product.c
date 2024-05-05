@@ -120,6 +120,7 @@ void Buy_Good_Confirm(int idx)
         {
             tmp->res -= goods[idx].price; 
             printf("购买成功！\n");
+            goods[idx].cnt --;
             Order *tmp_order = (Order *)malloc(sizeof(Order));
             strcpy(tmp_order->good_id, goods[idx].id);
             strcpy(tmp_order->seller_id, goods[idx].SellID);
