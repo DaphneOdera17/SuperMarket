@@ -54,13 +54,13 @@ void Admin_Login()
 
 void User_Login()
 {
-    getchar(); // 获取缓冲区字符
+    getchar(); 
 
     char username[MAX_NAME_LENGTH];
     char password[MAX_PASSWORD_LENGTH];
 
-    getName(username); // 获取用户名
-    getPassword(password); // 获取密码
+    getName(username);
+    getPassword(password); 
     puts("");
 
     int flag = check(username, password); // 0 表示未查找到用户 1 表示查找到对应的用户

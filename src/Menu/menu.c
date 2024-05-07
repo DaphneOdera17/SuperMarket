@@ -50,10 +50,10 @@ const int optionNumber[MENU_NUMBER] = {4, 4, 6, 6, 7, 4, 4, 4};
 int menu(Menu type)
 {
     PromptMessage(type);
-    char buffer[MAX_LEN]; // 用户键入缓冲区
+    char buffer[MAX_LEN]; 
     int res;
     scanf("%s", buffer);
-    res = atoi(buffer); // 将字符串转换成整形。如果转化失败则非法。直至用户输入合法
+    res = atoi(buffer);
     while(1)
     {
         if(res >= 1 && res <= optionNumber[type]) break;
