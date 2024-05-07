@@ -63,7 +63,7 @@ void User_Login()
     getPassword(password); 
     puts("");
 
-    int flag = check(username, password); // 0 表示未查找到用户 1 表示查找到对应的用户
+    int flag = check(username, password); // -1 表示未查找到用户 1 表示查找到对应的用户
     if(flag == -1)
         error_finding_user(), failureMessage();
     else if(check(username, password))
