@@ -1,7 +1,7 @@
+#include "tools/hint.h"
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
-#include "tools/hint.h"
 
 // 保留上一次最大的 ID
 static const char* FILEPATH = "src/Data/Max_ID.txt";
